@@ -1,0 +1,42 @@
+name: CI
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build-web:
+    name: Build website
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: apps/web
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: apps/web/package-lock.json
+      - run: npm ci
+      - run: npx svelte-kit sync
+      - run: npx svelte-check --tsconfig ./tsconfig.json
+      - run: npm run build
+
+  build-starter:
+    name: Build starter
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: starters/elevate-web-starter
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: starters/elevate-web-starter/package-lock.json
+      - run: npm ci
+      - run: npx svelte-kit sync
+      - run: npm run build

@@ -1,0 +1,28 @@
+# Dependencies
+**/node_modules/
+
+# Build output
+**/.svelte-kit/
+**/dist/
+**/build/
+**/.output/
+**/.vercel/
+
+# Environment
+**/.env
+**/.env.*
+!**/.env.example
+
+# Logs
+*.log
+*output*.txt
+*check*.txt
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+.vscode/*
+!.vscode/extensions.json
