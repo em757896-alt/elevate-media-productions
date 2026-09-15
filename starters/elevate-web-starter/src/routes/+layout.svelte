@@ -29,7 +29,7 @@
 </script>
 
 <div class="min-h-dvh font-sans text-slate-200">
-  {svelte:children}
+  {@render children()}
   <button
     onclick={toggle}
     aria-label="Toggle theme"
