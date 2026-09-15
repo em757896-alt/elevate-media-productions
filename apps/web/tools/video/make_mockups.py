@@ -125,29 +125,26 @@ def app_bar(d, title, right=True):
 # --------------------------------------------------------------------------
 def music_screen(d):
     status_bar(d)
-    d.text((26, 220), "Good evening", font=f(FB, 34), fill=WHITE)
-    hero = noise_photo(PW - 40, 250, (66, 60, 120), (26, 36, 70), seed=7)
-    d.rounded_rectangle((20, 268, PW - 20, 518), radius=22, fill=SLATE_L)
-    d.rounded_rectangle((20, 268, PW - 20, 518), radius=22, outline=(70, 84, 106), width=2)
-    d.rounded_rectangle((22, 270, PW - 22, 518), radius=20)
-    d.rounded_rectangle((22, 270, PW - 22, 518), radius=20, fill=(255, 255, 255, 0))
-    d._image.paste(hero, (22, 270))
-    # overlay
-    ov = Image.new("RGBA", (PW - 44, 248), (0, 0, 0, 0))
+    d.text((26, 66), "Good evening", font=f(FB, 34), fill=WHITE)
+    hero = noise_photo(PW - 40, 230, (66, 60, 120), (26, 36, 70), seed=7)
+    d.rounded_rectangle((20, 120, PW - 20, 350), radius=22, fill=SLATE_L)
+    d.rounded_rectangle((22, 122, PW - 22, 348), radius=20)
+    d._image.paste(hero, (22, 122))
+    ov = Image.new("RGBA", (PW - 44, 226), (0, 0, 0, 0))
     od = ImageDraw.Draw(ov)
-    od.rectangle((0, 0, PW - 44, 248), fill=(0, 0, 0, 110))
-    spect = [(x, 150 - random.Random(x).randint(10, 140)) for x in range(8, PW - 60, 26)]
+    od.rectangle((0, 0, PW - 44, 226), fill=(0, 0, 0, 110))
+    spect = [(x, 130 - random.Random(x).randint(10, 120)) for x in range(8, PW - 60, 26)]
     for sx, sh in spect:
-        od.rectangle((sx, sh, sx + 14, 248), fill=(255, 255, 255, 120))
+        od.rectangle((sx, sh, sx + 14, 226), fill=(255, 255, 255, 120))
     ov = ov.filter(ImageFilter.GaussianBlur(1))
-    d._image.paste(ov, (22, 270), ov)
-    d.text((40, 300), "NEW RELEASE", font=f(FB, 18), fill=WHITE)
-    d.text((40, 330), "Afterglow", font=f(FB, 40), fill=WHITE)
-    d.text((40, 378), "Aurora Nights", font=f(FR, 22), fill=(196, 208, 230))
-    d.rounded_rectangle((40, 430, 108, 486), radius=26, fill=PINK)
-    d.ellipse((52, 446, 66, 462), fill=WHITE)
-    d.polygon((58, 442, 58, 466, 76, 454), fill=WHITE)
-    d.text((30, 545), "Made for you", font=f(FB, 28), fill=WHITE)
+    d._image.paste(ov, (22, 122), ov)
+    d.text((40, 148), "NEW RELEASE", font=f(FB, 18), fill=WHITE)
+    d.text((40, 178), "Afterglow", font=f(FB, 40), fill=WHITE)
+    d.text((40, 224), "Aurora Nights", font=f(FR, 22), fill=(196, 208, 230))
+    d.rounded_rectangle((40, 262, 108, 318), radius=26, fill=PINK)
+    d.ellipse((52, 278, 66, 294), fill=WHITE)
+    d.polygon((58, 274, 58, 298, 76, 286), fill=WHITE)
+    d.text((30, 372), "Made for you", font=f(FB, 28), fill=WHITE)
     tile = 96
     for i, (name, art) in enumerate([
         ("Lo-Fi Focus", (70, 92, 140)),
@@ -155,24 +152,26 @@ def music_screen(d):
         ("Deep Work", (46, 110, 100)),
     ]):
         x = 26 + i * (tile + 14)
-        d.rounded_rectangle((x, 590, x + tile, 686), radius=14, fill=SLATE_L)
+        d.rounded_rectangle((x, 415, x + tile, 511), radius=14, fill=SLATE_L)
         ph = noise_photo(tile, tile, art, tuple(int(v * 0.5) for v in art), seed=20 + i)
-        d._image.paste(ph, (x, 590))
-        d.text((x, 696), name, font=f(FB, 22), fill=WHITE)
-        d.text((x, 724), "Aurora Nights", font=f(FR, 19), fill=GREY)
-    d.text((30, 770), "Recently played", font=f(FB, 26), fill=WHITE)
-    app_bar(d, "Library")
-
-    # player bar
-    d.rounded_rectangle((20, PH - 210, PW - 20, PH - 104), radius=20, fill=(24, 34, 56))
+        d._image.paste(ph, (x, 415))
+        d.text((x, 520), name, font=f(FB, 22), fill=WHITE)
+        d.text((x, 548), "Aurora Nights", font=f(FR, 17), fill=GREY)
+    d.text((30, 598), "Recently played", font=f(FB, 26), fill=WHITE)
     ph = noise_photo(56, 56, (90, 70, 130), (30, 40, 70), seed=3)
-    d._image.paste(ph, (38, PH - 194))
-    d.rounded_rectangle((30, PH - 202, 102, PH - 130), radius=12)
-    d.text((118, PH - 192), "Midnight City", font=f(FB, 22), fill=WHITE)
-    d.text((118, PH - 162), "Neon Skyline", font=f(FR, 19), fill=GREY)
-    d.rounded_rectangle((40, PH - 160, PW - 100, PH - 156), radius=2, fill=(60, 74, 98))
-    d.rounded_rectangle((40, PH - 160, PW - 190, PH - 156), radius=2, fill=PINK)
-    d.ellipse((PW - 110, PH - 186, PW - 60, PH - 136), fill=PINK)
+    d._image.paste(ph, (30, 640))
+    d.rounded_rectangle((22, 632, 94, 704), radius=12)
+    d.text((110, 646), "Midnight City", font=f(FB, 22), fill=WHITE)
+    d.text((110, 676), "Neon Skyline", font=f(FR, 18), fill=GREY)
+    d.rounded_rectangle((116, 706, PW - 40, 710), radius=2, fill=(60, 74, 98))
+    d.rounded_rectangle((116, 706, PW - 210, 710), radius=2, fill=PINK)
+    # player bar
+    d.rounded_rectangle((20, 740, PW - 20, 826), radius=20, fill=(24, 34, 56))
+    d.text((34, 754), "▶", font=f(FB, 24), fill=WHITE)
+    d.text((78, 754), "Neon Skyline", font=f(FB, 22), fill=WHITE)
+    d.text((150, 780), "03:24", font=f(FR, 16), fill=GREY)
+    d.text((250, 780), "04:10", font=f(FR, 16), fill=GREY)
+    app_bar(d, "Library")
 
 
 # --------------------------------------------------------------------------
@@ -293,27 +292,27 @@ def food_screen(d):
     d.text((42, 286), "Use code ELEVATE20", font=f(FR, 22), fill=(255, 222, 190))
     d.rounded_rectangle((42, 318, 176, 352), radius=16, fill=AMBER)
     d.text((58, 327), "Order now", font=f(FB, 20), fill=SLATE_D)
-    cat = [(("Pizza", 12, (200, 120, 80)), ("Burgers", 22, (140, 90, 60)),
-            ("Sushi", 32, (80, 130, 120)), ("Salads", 42, (80, 140, 80)))]
-    d.text((26, 400), "Popular near you", font=f(FB, 28), fill=WHITE)
+    d.text((26, 380), "Popular near you", font=f(FB, 28), fill=WHITE)
     rest = [
         ("Umbrella Café", "$10-25", "4.8 ★", (30, 40, 90), 14),
         ("Savanna Grill", "$15-40", "4.9 ★", (120, 60, 40), 15),
         ("Coast Tavern", "$8-20", "4.7 ★", (30, 90, 100), 16),
     ]
+    card_h = 128
+    gap = 14
     for i, (name, price, stars, base, seed) in enumerate(rest):
-        y = 450 + i * 152
-        d.rounded_rectangle((20, y, PW - 20, y + 138), radius=20, fill=(24, 34, 56))
-        ph = noise_photo(120, 118, base, tuple(int(v * 0.4) for v in base), seed=seed)
-        d.rounded_rectangle((28, y + 10, 148, y + 128), radius=14, fill=SLATE_L)
-        d._image.paste(ph, (30, y + 12))
-        d.text((164, y + 18), name, font=f(FB, 26), fill=WHITE)
-        d.text((164, y + 54), f"{price}  •  {stars}", font=f(FR, 21), fill=GREY)
-        d.rounded_rectangle((164, y + 90, 248, y + 124), radius=14, fill=TEAL)
-        d.text((176, y + 100), "Order", font=f(FB, 20), fill=SLATE_D)
-        d.ellipse((PW - 120, y + 40, PW - 40, y + 120), fill=SLATE_L)
-        d.line((PW - 92, y + 60, PW - 68, y + 100), fill=GREEN, width=6)
-        d.line((PW - 68, y + 100, PW - 42, y + 60), fill=GREEN, width=6)
+        y = 414 + i * (card_h + gap)
+        d.rounded_rectangle((20, y, PW - 20, y + card_h), radius=20, fill=(24, 34, 56))
+        ph = noise_photo(112, card_h - 16, base, tuple(int(v * 0.4) for v in base), seed=seed)
+        d.rounded_rectangle((28, y + 8, 140, y + card_h - 8), radius=14, fill=SLATE_L)
+        d._image.paste(ph, (30, y + 10))
+        d.text((156, y + 18), name, font=f(FB, 24), fill=WHITE)
+        d.text((156, y + 52), f"{price}  •  {stars}", font=f(FR, 20), fill=GREY)
+        d.rounded_rectangle((156, y + 84, 240, y + 114), radius=14, fill=TEAL)
+        d.text((168, y + 93), "Order", font=f(FB, 19), fill=SLATE_D)
+        d.ellipse((PW - 116, y + 60, PW - 40, y + 116), fill=SLATE_L)
+        d.line((PW - 90, y + 76, PW - 66, y + 106), fill=GREEN, width=5)
+        d.line((PW - 66, y + 106, PW - 44, y + 78), fill=GREEN, width=5)
     tab_bar(d, ["Home", "Search", "Orders", "Cart"], active=0)
 
 

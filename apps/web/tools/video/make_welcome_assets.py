@@ -163,14 +163,15 @@ def contact_slide():
         ("Website", "elevate-media-productions.vercel.app", INDIGO),
         ("Email", "elevatemediaproductions1@gmail.com", PINK),
         ("WhatsApp", "+254 111 275 630", TEAL),
+        ("Reddit", "reddit.com/user/ElevateMediaProd", PINK),
         ("Socials", "Instagram  •  X / Twitter  •  TikTok  •  Threads", INDIGO),
-        ("GitHub", "github.com/emmanuel-tech-resources", PINK),
+        ("GitHub", "github.com/em757896-alt/elevate-media-productions", TEAL),
     ]
     y = 400
     for label, value, col in rows:
-        draw.text((W // 2 - 820, y), label.upper(), font=font(FONT_BOLD, 30), fill=col + (255,))
-        draw.text((W // 2 - 240, y + 2), value, font=font(FONT_REG, 34), fill=(240, 244, 252))
-        y += 96
+        draw.text((W // 2 - 820, y), label.upper(), font=font(FONT_BOLD, 28), fill=col + (255,))
+        draw.text((W // 2 - 240, y + 2), value, font=font(FONT_REG, 30), fill=(240, 244, 252))
+        y += 84
 
     draw.text((W // 2 - draw.textlength("Follow us everywhere, and tell a friend.", font=font(FONT_REG, 32)) / 2, 930),
               "Follow us everywhere, and tell a friend.", font=font(FONT_REG, 32), fill=(150, 165, 195))
