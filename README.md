@@ -120,7 +120,8 @@ or start a [discussion](https://github.com/em757896-alt/elevate-media-production
 - 🌐 Website: [elevate-media-productions.vercel.app](https://elevate-media-productions.vercel.app)
 - 👾 Reddit: [u/ElevateMediaProd](https://www.reddit.com/user/ElevateMediaProd/)
 - 📧 Email: **[elevatemediaproductions1@gmail.com](mailto:elevatemediaproductions1@gmail.com)**
-- 💬 WhatsApp: `+254 111 275 630`
+- 💬 WhatsApp: `+254 775 333 673`
+- 📞 Call: `+254 111 275 630`
 
 ## License
 
