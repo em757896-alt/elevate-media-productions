@@ -3,7 +3,7 @@
   import { avatarColor, formatDate } from '$lib/utils';
 
   const users = [
-    { id: 'admin-1', name: 'Emmanuel K.', email: 'emmanuel@elevatemedia.io', role: 'admin', joined: '2025-01-15' },
+    { id: 'admin-1', name: 'Emmanuel Michael', email: 'emmanuel@elevatemedia.io', role: 'admin', joined: '2025-01-15' },
     { id: '2', name: 'Nyambura W.', email: 'nyambura@example.com', role: 'member', joined: '2025-03-22' },
     { id: '3', name: 'Carlos M.', email: 'carlos@example.com', role: 'member', joined: '2025-04-10' },
     { id: '4', name: 'Linda A.', email: 'linda@example.com', role: 'moderator', joined: '2025-05-01' },

@@ -3,10 +3,12 @@
   import Reveal from '$lib/components/ui/Reveal.svelte';
   import SectionHeading from '$lib/components/ui/SectionHeading.svelte';
   import Icon from '$lib/components/ui/Icon.svelte';
-  import { forumCategories, getForumThreads } from '$lib/data/forum';
   import { timeAgo } from '$lib/utils';
 
-  const threads = getForumThreads();
+  let { data } = $props();
+
+  const threads = $derived(data.threads);
+  const categories = $derived(data.categories);
 </script>
 
 <svelte:head>
@@ -32,7 +34,7 @@
               <h3 class="font-display text-lg font-bold text-ink dark:text-white">Categories</h3>
             </div>
             <ul class="space-y-1.5">
-              {#each forumCategories as category (category.id)}
+              {#each categories as category (category.id)}
                 <li>
                   <a
                     href="/forum/{category.slug}"
@@ -95,7 +97,7 @@
                       <div class="mt-1 flex items-center gap-2 text-xs text-ink-light dark:text-slate-500 flex-wrap">
                         <span>{thread.author_name}</span>
                         <span>·</span>
-                        <span class="rounded px-1.5 py-0.5 text-[10px] font-medium" style="background: {forumCategories.find(c => c.id === thread.category_id)?.color ?? '#6366f1'}15; color: {forumCategories.find(c => c.id === thread.category_id)?.color ?? '#6366f1'}">
+                        <span class="rounded px-1.5 py-0.5 text-[10px] font-medium" style="background: {(categories.find(c => c.id === thread.category_id)?.color ?? '#6366f1')}15; color: {(categories.find(c => c.id === thread.category_id)?.color ?? '#6366f1')}">
                           {thread.category_name}
                         </span>
                         <span>·</span>
@@ -108,6 +110,12 @@
                   </a>
                 </li>
               {/each}
+              {#if threads.length === 0}
+                <li class="py-10 text-center text-ink-light dark:text-slate-500">
+                  <MessageCircle size={32} class="mx-auto mb-3 opacity-30" />
+                  <p>No discussions here yet. Be the first to start one!</p>
+                </li>
+              {/if}
             </ul>
           </div>
         </Reveal>

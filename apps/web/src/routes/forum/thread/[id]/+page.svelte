@@ -1,17 +1,43 @@
 <script lang="ts">
-  import { page } from '$app/state';
-  import { ArrowLeft, ThumbsUp, MessageCircle, Clock, Lock, Pin } from 'lucide-svelte';
+  import { ArrowLeft, ThumbsUp, MessageCircle, Clock, Lock, Pin, Send, LogIn } from 'lucide-svelte';
   import Reveal from '$lib/components/ui/Reveal.svelte';
   import Badge from '$lib/components/ui/Badge.svelte';
-  import { getThreadById, forumCategories, forumReplies } from '$lib/data/forum';
   import { timeAgo, avatarColor } from '$lib/utils';
+  import { enhance } from '$app/forms';
 
-  const threadId = $derived(page.params.id ?? '');
-  const thread = $derived(getThreadById(threadId));
+  let { data, form } = $props();
+
+  const thread = $derived(data.thread);
+  const replies = $derived(data.replies);
+  const user = $derived(data.user);
   const category = $derived(
-    thread ? forumCategories.find((c) => c.id === thread.category_id) : null
+    thread ? { name: thread.category_name } : null
   );
-  const replies = $derived(forumReplies.filter((r) => r.thread_id === threadId));
+
+  const canInteract = $derived(Boolean(thread));
+  const locked = $derived(thread?.locked ?? false);
+  const signedIn = $derived(Boolean(user));
+
+  let upvotes = $state(thread?.upvotes ?? 0);
+  let submitMsg = $state(form?.message ?? '');
+  let submitOk = $state(form?.ok ?? false);
+
+  async function onLike() {
+    if (!thread) return;
+    if (!signedIn) {
+      window.location.href = '/auth/login';
+      return;
+    }
+    const res = await fetch(`/api/forum/vote`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ thread_id: thread.id })
+    });
+    if (res.ok) {
+      const json = await res.json();
+      upvotes = json.upvotes;
+    }
+  }
 </script>
 
 <svelte:head>
@@ -25,25 +51,17 @@
       <div class="container-x relative mx-auto max-w-3xl">
         <Reveal>
           <a
-            href="/forum/{category?.slug ?? ''}"
+            href="/forum"
             class="group mb-10 inline-flex items-center gap-2 text-sm text-ink-light transition-colors hover:text-ink dark:text-slate-400 dark:hover:text-white"
           >
             <ArrowLeft size={16} class="transition-transform group-hover:-translate-x-1" />
-            Back to {category?.name ?? 'forum'}
+            Back to forum
           </a>
         </Reveal>
 
         <Reveal>
           <div class="flex flex-wrap items-center gap-3 mb-4">
-            {#if category}
-              <a
-                href="/forum/{category.slug}"
-                class="rounded-lg px-2.5 py-1 text-xs font-medium text-white"
-                style="background: {category.color}"
-              >
-                {category.name}
-              </a>
-            {/if}
+            {category}
             {#if thread.pinned}
               <Badge variant="secondary">
                 <Pin size={11} /> Pinned
@@ -93,12 +111,21 @@
             </div>
 
             <div class="mt-8 flex items-center gap-6 border-t border-slate-200/50 pt-6 dark:border-white/5">
-              <button class="inline-flex items-center gap-2 rounded-lg bg-ink/5 px-3 py-1.5 text-sm text-ink-light transition-colors hover:bg-ink/10 dark:bg-white/5 dark:text-slate-400 dark:hover:bg-white/10">
-                <ThumbsUp size={15} /> {thread.upvotes}
+              <button
+                onclick={onLike}
+                disabled={!canInteract}
+                class="inline-flex items-center gap-2 rounded-lg bg-ink/5 px-3 py-1.5 text-sm text-ink-light transition-colors hover:bg-ink/10 dark:bg-white/5 dark:text-slate-400 dark:hover:bg-white/10 {signedIn ? '' : 'cursor-pointer'}"
+              >
+                <ThumbsUp size={15} class={upvotes > 0 ? 'text-primary-500' : ''} /> {upvotes}
               </button>
               <span class="flex items-center gap-2 text-sm text-ink-light dark:text-slate-500">
-                <MessageCircle size={15} /> {thread.reply_count} {thread.reply_count === 1 ? 'reply' : 'replies'}
+                <MessageCircle size={15} /> {replies.length} {replies.length === 1 ? 'reply' : 'replies'}
               </span>
+              {#if !signedIn}
+                <a href="/auth/login" class="ml-auto inline-flex items-center gap-2 text-sm font-medium text-primary-600 dark:text-primary-400">
+                  <LogIn size={15} /> Sign in
+                </a>
+              {/if}
             </div>
           </div>
         </Reveal>
@@ -110,9 +137,13 @@
               <ul class="space-y-4">
                 {#each replies as reply (reply.id)}
                   <li class="flex gap-3 rounded-xl p-4 transition-colors hover:bg-ink/5 dark:hover:bg-white/5">
-                    <div class="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full text-xs font-bold text-white" style="background: {avatarColor(reply.author_name)}">
-                      {reply.author_name.split(' ').map((n) => n[0]).join('')}
-                    </div>
+                    {#if reply.author_avatar}
+                      <img src={reply.author_avatar} alt={reply.author_name} width="32" height="32" loading="lazy" class="h-8 w-8 flex-shrink-0 rounded-full object-cover" />
+                    {:else}
+                      <div class="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full text-xs font-bold text-white" style="background: {avatarColor(reply.author_name)}">
+                        {reply.author_name.split(' ').map((n) => n[0]).join('')}
+                      </div>
+                    {/if}
                     <div class="flex-1 min-w-0">
                       <div class="flex items-center gap-2 text-sm">
                         <span class="font-semibold text-ink dark:text-white">{reply.author_name}</span>
@@ -123,6 +154,41 @@
                   </li>
                 {/each}
               </ul>
+            </div>
+          </Reveal>
+        {/if}
+
+        {#if !locked}
+          <Reveal>
+            <div class="mt-8 glass rounded-2xl p-6">
+              <h3 class="mb-4 font-display text-lg font-bold text-ink dark:text-white">Join the discussion</h3>
+              {#if signedIn}
+                <form method="POST" action="?/reply" use:enhance>
+                  <textarea
+                    name="content"
+                    required
+                    rows={4}
+                    placeholder="Write your reply…"
+                    class="w-full rounded-xl border border-slate-200/80 bg-fog-light px-4 py-3 text-sm text-ink outline-none focus:border-primary-500 dark:border-white/10 dark:bg-night-lighter dark:text-white resize-y"
+                  ></textarea>
+                  <div class="mt-4 flex items-center gap-3">
+                    <button type="submit" class="btn-gradient !px-5 !py-2.5 !text-sm">
+                      <Send size={14} /> Post reply
+                    </button>
+                    {#if submitMsg}
+                      {#if submitOk}
+                        <p class="text-sm font-medium text-emerald-500">{submitMsg}</p>
+                      {:else}
+                        <p class="text-sm font-medium text-secondary-500">{submitMsg}</p>
+                      {/if}
+                    {/if}
+                  </div>
+                </form>
+              {:else}
+                <a href="/auth/login?redirect=/forum/thread/{thread.id}" class="btn-gradient !px-5 !py-2.5 !text-sm">
+                  <LogIn size={14} /> Sign in to reply
+                </a>
+              {/if}
             </div>
           </Reveal>
         {/if}

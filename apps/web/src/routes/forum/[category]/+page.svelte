@@ -1,15 +1,14 @@
 <script lang="ts">
-  import { page } from '$app/state';
   import { ArrowLeft, Plus, MessageCircle } from 'lucide-svelte';
   import Reveal from '$lib/components/ui/Reveal.svelte';
-  import Badge from '$lib/components/ui/Badge.svelte';
   import Icon from '$lib/components/ui/Icon.svelte';
-  import { forumCategories, getForumThreads } from '$lib/data/forum';
   import { timeAgo } from '$lib/utils';
 
-  const slug = $derived(page.params.category ?? '');
-  const category = $derived(forumCategories.find((c) => c.slug === slug));
-  const threads = $derived(getForumThreads().filter((t) => t.category_name === category?.name));
+  let { data } = $props();
+
+  const category = $derived(data.category);
+  const threads = $derived(data.threads);
+  const user = $derived(data.user);
 </script>
 
 <svelte:head>
@@ -39,7 +38,7 @@
                 <p class="mt-0.5 text-sm text-ink-light dark:text-slate-400">{category.description}</p>
               </div>
             </div>
-            <a href="/forum/new" class="btn-gradient !px-5 !py-2.5 !text-sm">
+            <a href={user ? '/forum/new' : '/auth/login'} class="btn-gradient !px-5 !py-2.5 !text-sm">
               <Plus size={16} /> New thread
             </a>
           </div>
@@ -50,20 +49,20 @@
             {#each threads as thread (thread.id)}
               <li>
                 <a href="/forum/thread/{thread.id}" class="group flex items-start gap-3 rounded-xl px-4 py-3 transition-colors hover:bg-ink/5 dark:hover:bg-white/5">
-{#if thread.author_avatar}
-                      <img
-                        src={thread.author_avatar}
-                        alt={thread.author_name}
-                        width="36"
-                        height="36"
-                        loading="lazy"
-                        class="h-9 w-9 flex-shrink-0 rounded-full object-cover"
-                      />
-                    {:else}
-                      <div class="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-primary-500 to-secondary-500 text-xs font-bold text-white">
-                        {thread.author_name.split(' ').map((n) => n[0]).join('')}
-                      </div>
-                    {/if}
+                  {#if thread.author_avatar}
+                    <img
+                      src={thread.author_avatar}
+                      alt={thread.author_name}
+                      width="36"
+                      height="36"
+                      loading="lazy"
+                      class="h-9 w-9 flex-shrink-0 rounded-full object-cover"
+                    />
+                  {:else}
+                    <div class="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-primary-500 to-secondary-500 text-xs font-bold text-white">
+                      {thread.author_name.split(' ').map((n) => n[0]).join('')}
+                    </div>
+                  {/if}
                   <div class="flex-1 min-w-0">
                     <div class="flex items-center gap-2 flex-wrap">
                       {#if thread.pinned}

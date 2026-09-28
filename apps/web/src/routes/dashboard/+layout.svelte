@@ -1,6 +1,6 @@
 <script lang="ts">
   import { page } from '$app/state';
-  import { LayoutDashboard, FolderOpen, FileText, MessageCircle, Users, Settings, LogOut, ChevronLeft, Rocket } from 'lucide-svelte';
+  import { LayoutDashboard, FolderOpen, FileText, MessageCircle, MessagesSquare, Users, Settings, LogOut, ChevronLeft, Rocket } from 'lucide-svelte';
   import { goto } from '$app/navigation';
   import { session } from '$lib/stores/session';
   import { signOut, supabaseConfigured } from '$lib/supabase';
@@ -14,6 +14,7 @@
     { href: '/dashboard/projects', icon: FolderOpen, label: 'Projects' },
     { href: '/dashboard/blog', icon: FileText, label: 'Blog' },
     { href: '/dashboard/forum', icon: MessageCircle, label: 'Forum' },
+    { href: '/dashboard/messages', icon: MessagesSquare, label: 'Messages' },
     { href: '/dashboard/users', icon: Users, label: 'Users' },
     { href: '/dashboard/settings', icon: Settings, label: 'Settings' }
   ];

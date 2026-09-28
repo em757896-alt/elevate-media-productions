@@ -381,6 +381,106 @@ create policy "Admin can manage testimonials"
   with check (exists (select 1 from public.profiles where id = auth.uid() and role = 'admin'));
 
 -- ============================================================
+-- FORUM VOTE TOGGLE (security definer RPC)
+-- Inserts/removes a vote and keeps the thread/reply count exact.
+-- Requires an authenticated user.
+-- ============================================================
+create or replace function public.toggle_forum_vote(p_thread_id uuid, p_reply_id uuid default null)
+returns integer
+language plpgsql
+security definer set search_path = public
+as $$
+declare
+  v_uid uuid := auth.uid();
+  v_count integer;
+begin
+  if v_uid is null then
+    raise exception 'not authenticated';
+  end if;
+
+  if p_reply_id is not null then
+    if exists (select 1 from public.forum_votes where user_id = v_uid and reply_id = p_reply_id) then
+      delete from public.forum_votes where user_id = v_uid and reply_id = p_reply_id;
+    else
+      insert into public.forum_votes (user_id, reply_id)
+      values (v_uid, p_reply_id)
+      on conflict (user_id, reply_id) do nothing;
+    end if;
+    select count(*) into v_count from public.forum_votes where reply_id = p_reply_id;
+    update public.forum_replies set upvotes = v_count where id = p_reply_id;
+  else
+    if exists (select 1 from public.forum_votes where user_id = v_uid and thread_id = p_thread_id) then
+      delete from public.forum_votes where user_id = v_uid and thread_id = p_thread_id;
+    else
+      insert into public.forum_votes (user_id, thread_id)
+      values (v_uid, p_thread_id)
+      on conflict (user_id, thread_id) do nothing;
+    end if;
+    select count(*) into v_count from public.forum_votes where thread_id = p_thread_id;
+    update public.forum_threads set upvotes = v_count where id = p_thread_id;
+  end if;
+
+  return v_count;
+end;
+$$;
+
+grant execute on function public.toggle_forum_vote(uuid, uuid) to authenticated;
+
+-- ============================================================
+-- FORUM REPLY COUNT / LAST REPLY TOUCH
+-- Atomically bumps the thread reply counter and timestamps
+-- when a new reply is posted.
+-- ============================================================
+create or replace function public.touch_thread(p_thread_id uuid)
+returns void
+language plpgsql
+security definer set search_path = public
+as $$
+begin
+  update public.forum_threads
+    set reply_count = reply_count + 1,
+        last_reply_at = now(),
+        updated_at = now()
+    where id = p_thread_id;
+end;
+$$;
+
+grant execute on function public.touch_thread(uuid) to authenticated;
+
+-- ============================================================
+-- DIRECT MESSAGES (1:1 between signed-in members)
+-- ============================================================
+create table if not exists public.forum_messages (
+  id uuid primary key default gen_random_uuid(),
+  sender_id uuid references public.profiles (id) on delete cascade not null,
+  recipient_id uuid references public.profiles (id) on delete cascade not null,
+  content text not null check (char_length(content) between 1 and 4000),
+  read_at timestamptz,
+  created_at timestamptz not null default now()
+);
+
+create index if not exists forum_messages_participants_idx
+  on public.forum_messages (sender_id, recipient_id, created_at);
+
+alter table public.forum_messages enable row level security;
+
+drop policy if exists "Participants can view their messages" on public.forum_messages;
+create policy "Participants can view their messages"
+  on public.forum_messages for select
+  using (auth.uid() = sender_id or auth.uid() = recipient_id);
+
+drop policy if exists "Users send their own messages" on public.forum_messages;
+create policy "Users send their own messages"
+  on public.forum_messages for insert
+  with check (auth.uid() = sender_id);
+
+drop policy if exists "Recipients can mark messages read" on public.forum_messages;
+create policy "Recipients can mark messages read"
+  on public.forum_messages for update
+  using (auth.uid() = recipient_id)
+  with check (auth.uid() = recipient_id);
+
+-- ============================================================
 -- SEED DATA
 -- ============================================================
 insert into public.forum_categories (name, slug, description, icon, color, thread_count, post_count, "order") values

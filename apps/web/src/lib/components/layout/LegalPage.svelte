@@ -17,8 +17,9 @@
     <div class="container-x relative">
       <SectionHeading {badge} {title} {subtitle} />
 
-      <div class="reveal mt-12 mx-auto max-w-3xl">
-        <div class="glass rounded-2xl p-7 md:p-10 space-y-8">
+      <Reveal>
+        <div class="mt-12 mx-auto max-w-3xl">
+          <div class="glass rounded-2xl p-7 md:p-10 space-y-8">
           <p class="text-sm text-ink-light dark:text-slate-400">
             Effective date: <span class="font-medium text-ink dark:text-white">{legal.effectiveDate}</span>
           </p>
@@ -41,8 +42,9 @@
           <p class="border-t border-slate-200/60 pt-6 text-xs text-ink-light dark:border-white/5 dark:text-slate-500">
             {legal.controller} · {legal.website}
           </p>
+          </div>
         </div>
-      </div>
+      </Reveal>
     </div>
   </section>
 </div>

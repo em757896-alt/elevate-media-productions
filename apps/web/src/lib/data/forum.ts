@@ -76,8 +76,8 @@ export const forumThreads: Array<
     content:
       'Welcome to the Elevate Media Productions community forum!\n\nThis space is for developers, designers, clients and curious minds to connect around the work we build — and the craft behind it.\n\nSome ground rules:\n\n1. Be kind and constructive.\n2. Stay on topic — there is a category for everything.\n3. Share generously; you learn fastest when you teach.\n4. No spam or self-promotion outside the Show & Tell category.\n\nSay hello below and introduce yourself! Tell us what you are building and where you are from.',
     author_id: 'admin-1',
-    author_name: 'Emmanuel K.',
-    author_avatar: '/avatars/forum-1.jpg',
+    author_name: 'Emmanuel Michael',
+    author_avatar: '/founder.jpg',
     category_id: '1',
     category_name: 'Announcements',
     pinned: true,
@@ -94,8 +94,8 @@ export const forumThreads: Array<
     content:
       'The new brand platform is finally live! Here are the build notes:\n\n- Powered by SvelteKit + Svelte 5 runes\n- Tailwind CSS v4 with a custom design-token system\n- Forum, blog and dashboard all first-party\n- Deployed to Vercel with adaptive edge rendering\n\nI would love your feedback on the animations and the forum experience. Anything that feels heavy or sluggish — tell me in the comments!',
     author_id: 'admin-1',
-    author_name: 'Emmanuel K.',
-    author_avatar: '/avatars/forum-1.jpg',
+    author_name: 'Emmanuel Michael',
+    author_avatar: '/founder.jpg',
     category_id: '1',
     category_name: 'Announcements',
     pinned: true,
