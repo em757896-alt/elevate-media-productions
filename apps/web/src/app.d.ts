@@ -1,9 +1,15 @@
 // See https://svelte.dev/docs/kit/types#app.d.ts
 // for information about these interfaces
+import type { User } from '@supabase/supabase-js';
+import type { SupabaseServerClient } from '$lib/server/supabase';
+
 declare global {
   namespace App {
+    interface Locals {
+      supabase: SupabaseServerClient | null;
+      safeGetSession: () => Promise<{ user: User | null }>;
+    }
     // interface Error {}
-    // interface Locals {}
     // interface PageData {}
     // interface PageState {}
     // interface Platform {}
@@ -26,6 +32,7 @@ declare global {
     description: string;
     long_description: string | null;
     image_url: string | null;
+    screenshots: string[];
     demo_url: string | null;
     github_url: string | null;
     tech_tags: string[];
@@ -71,6 +78,7 @@ declare global {
     slug: string;
     content: string;
     author_id: string;
+    author_avatar?: string | null;
     category_id: string;
     pinned: boolean;
     locked: boolean;

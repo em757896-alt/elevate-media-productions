@@ -45,6 +45,20 @@
           <p class="mt-4 text-lg text-ink-light dark:text-slate-400">{post.excerpt}</p>
         </Reveal>
 
+        {#if post.cover_image}
+          <Reveal>
+            <div class="mt-10 overflow-hidden rounded-2xl">
+              <img
+                src={post.cover_image}
+                alt={post.title}
+                width="1024"
+                height="576"
+                class="w-full object-cover"
+              />
+            </div>
+          </Reveal>
+        {/if}
+
         <Reveal>
           <article class="glass mt-10 rounded-2xl p-8 md:p-10 prose-custom">
             {#each post.content.split('\n') as paragraph}

@@ -30,12 +30,23 @@
               &ldquo;{testimonial.content}&rdquo;
             </p>
             <div class="mt-2 flex items-center gap-3 border-t border-slate-200/50 pt-4 dark:border-white/5">
-              <span
-                class="flex h-10 w-10 items-center justify-center rounded-full text-xs font-bold text-white"
-                style="background: {avatarColor(testimonial.name)}"
-              >
-                {testimonial.name.split(' ').map((n) => n[0]).join('').slice(0, 2)}
-              </span>
+              {#if testimonial.avatar_url}
+                <img
+                  src={testimonial.avatar_url}
+                  alt={testimonial.name}
+                  width="40"
+                  height="40"
+                  loading="lazy"
+                  class="h-10 w-10 rounded-full object-cover"
+                />
+              {:else}
+                <span
+                  class="flex h-10 w-10 items-center justify-center rounded-full text-xs font-bold text-white"
+                  style="background: {avatarColor(testimonial.name)}"
+                >
+                  {testimonial.name.split(' ').map((n) => n[0]).join('').slice(0, 2)}
+                </span>
+              {/if}
               <div>
                 <p class="text-sm font-semibold text-ink dark:text-white">{testimonial.name}</p>
                 <p class="text-xs text-ink-light dark:text-slate-500">

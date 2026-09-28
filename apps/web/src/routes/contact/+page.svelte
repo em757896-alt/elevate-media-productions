@@ -4,6 +4,7 @@
   import WhatsApp from '$lib/components/ui/WhatsApp.svelte';
   import Reveal from '$lib/components/ui/Reveal.svelte';
   import SectionHeading from '$lib/components/ui/SectionHeading.svelte';
+  import Turnstile from '$lib/components/ui/Turnstile.svelte';
   import { site } from '$lib/config';
   import { faqs } from '$lib/config';
 
@@ -11,6 +12,8 @@
   let email = $state('');
   let subject = $state('');
   let message = $state('');
+  let website = $state('');
+  let turnstileToken = $state('');
   let submitted = $state(false);
   let submitting = $state(false);
   let errorMsg = $state('');
@@ -25,7 +28,7 @@
       const res = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'content-type': 'application/json' },
-        body: JSON.stringify({ name, email, subject, message })
+        body: JSON.stringify({ name, email, subject, message, website, turnstile: turnstileToken })
       });
       if (!res.ok) {
         const data = await res.json().catch(() => ({}));
@@ -44,7 +47,7 @@
 
 <svelte:head>
   <title>Contact — Elevate Media Productions</title>
-  <meta name="description" content="Get in touch with Elevate Media Productions — project inquiries, collaboration and community." />
+  <meta name="description" content="Book an appointment with Elevate Media Productions for web, mobile and community platform projects." />
 </svelte:head>
 
 <div class="pt-28 md:pt-36">
@@ -53,8 +56,8 @@
     <div class="container-x relative">
       <SectionHeading
         badge="Contact"
-        title="Let's talk"
-        subtitle="Have a project in mind or want to collaborate? We reply within 48 hours."
+        title="Book an appointment"
+        subtitle="Have a project in mind or want to collaborate? Reach out — we typically respond within 48 hours."
       />
 
       <div class="grid gap-8 lg:grid-cols-[1.2fr_1.5fr]">
@@ -107,8 +110,8 @@
               <div class="flex h-14 w-14 items-center justify-center rounded-full bg-accent-500/10 text-accent-500">
                 <MessageCircle size={26} />
               </div>
-              <h3 class="mt-5 font-display text-xl font-bold text-ink dark:text-white">Message received!</h3>
-              <p class="mt-2 text-sm text-ink-light dark:text-slate-400">Thanks {name.split(' ')[0] || 'there'} — we will get back to you within 48 hours.</p>
+              <h3 class="mt-5 font-display text-xl font-bold text-ink dark:text-white">Request received!</h3>
+              <p class="mt-2 text-sm text-ink-light dark:text-slate-400">Thanks {name.split(' ')[0] || 'there'} — one of our team will get back to you within 48 hours.</p>
               <button class="btn-outline mt-6 !text-ink dark:!text-slate-200" onclick={() => submitted = false}>
                 Send another message
               </button>
@@ -116,6 +119,10 @@
           {:else}
             <form class="glass rounded-2xl p-7" onsubmit={onSubmit}>
               <div class="space-y-5">
+                <div class="hidden" aria-hidden="true">
+                  <label for="website">Website</label>
+                  <input id="website" type="text" tabindex="-1" autocomplete="off" bind:value={website} />
+                </div>
                 <div class="grid gap-5 sm:grid-cols-2">
                   <div>
                     <label for="name" class="mb-1.5 block text-sm font-medium text-ink dark:text-slate-200">Name</label>
@@ -130,7 +137,7 @@
                 </div>
                 <div>
                   <label for="subject" class="mb-1.5 block text-sm font-medium text-ink dark:text-slate-200">Subject</label>
-                  <input id="subject" type="text" bind:value={subject} required placeholder="What's this about?"
+                  <input id="subject" type="text" bind:value={subject} required placeholder="How can we help?"
                     class="w-full rounded-xl border border-slate-200/80 bg-fog-light px-4 py-3 text-sm text-ink outline-none focus:border-primary-500 dark:border-white/10 dark:bg-night-lighter dark:text-white" />
                 </div>
                 <div>
@@ -140,6 +147,7 @@
                 </div>
               </div>
               <div class="mt-6 flex flex-col items-end gap-3">
+                <Turnstile bind:token={turnstileToken} />
                 {#if errorMsg}
                   <p class="text-sm text-red-500" role="alert">{errorMsg}</p>
                 {/if}
@@ -148,7 +156,7 @@
                     <span class="inline-block h-4 w-4 animate-spin rounded-full border-2 border-white/40 border-t-white" aria-hidden="true"></span>
                     Sending...
                   {:else}
-                    <Send size={15} /> Send message
+                    <Send size={15} /> Book appointment
                   {/if}
                 </button>
               </div>

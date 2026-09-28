@@ -1,21 +1,9 @@
-import { createClient, type User } from '@supabase/supabase-js';
+import type { User } from '@supabase/supabase-js';
 import { session } from '$lib/stores/session';
+import { clientSupabase, getClientSession } from '$lib/supabase-client';
 
-const url = import.meta.env.VITE_SUPABASE_URL as string | undefined;
-const anonKey = import.meta.env.VITE_SUPABASE_ANON_KEY as string | undefined;
-const configured = Boolean(url && anonKey);
-
-export const supabase = configured && url && anonKey
-  ? createClient(url, anonKey, {
-      auth: {
-        persistSession: true,
-        autoRefreshToken: true,
-        detectSessionInUrl: true
-      }
-    })
-  : null;
-
-export const supabaseConfigured = configured;
+export const supabase = clientSupabase;
+export const supabaseConfigured = Boolean(clientSupabase);
 
 function fallbackProfile(user: User): Profile {
   return {
@@ -57,7 +45,7 @@ export function syncAuthState(): () => void {
     const profile = await getProfile(user);
     session.set({ user: profile, loading: false });
   };
-  supabase.auth.getSession().then(({ data }) => hydrate(data.session?.user ?? null));
+  getClientSession().then(({ data }) => hydrate(data.session?.user ?? null));
   const { data: sub } = supabase.auth.onAuthStateChange((_event, supabaseSession) => {
     hydrate(supabaseSession?.user ?? null);
   });

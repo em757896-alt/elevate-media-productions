@@ -1,11 +1,14 @@
 import { json, error } from '@sveltejs/kit';
 import { env } from '$env/dynamic/private';
 import type { RequestHandler } from './$types';
+import { verifyTurnstile } from '$lib/server/turnstile';
+import { isDisposableEmail } from '$lib/server/disposable-email';
 
 const MAX_NAME = 100;
 const MAX_EMAIL = 254;
 const MAX_SUBJECT = 200;
 const MAX_MESSAGE = 5000;
+const SITE_EMAIL = 'elevatemediaproductions1@gmail.com';
 
 export const POST: RequestHandler = async ({ request }) => {
   const apiKey = env.BREVO_API_KEY;
@@ -20,10 +23,16 @@ export const POST: RequestHandler = async ({ request }) => {
     throw error(400, 'Invalid request body.');
   }
 
+  // Honeypot: silently swallow bot submissions.
+  if (payload.website) {
+    return json({ ok: true });
+  }
+
   const name = typeof payload.name === 'string' ? payload.name.trim() : '';
   const email = typeof payload.email === 'string' ? payload.email.trim() : '';
   const subject = typeof payload.subject === 'string' ? payload.subject.trim() : '';
   const message = typeof payload.message === 'string' ? payload.message.trim() : '';
+  const turnstile = typeof payload.turnstile === 'string' ? payload.turnstile : '';
 
   if (
     !name || !email || !subject || !message ||
@@ -34,8 +43,17 @@ export const POST: RequestHandler = async ({ request }) => {
     throw error(400, 'Please fill in all fields with valid values.');
   }
 
-  const senderEmail = (env.CONTACT_SENDER ?? '').trim() || 'emmanuel004michael@gmail.com';
-  const recipient = (env.CONTACT_TO ?? '').trim() || 'emmanuel004michael@gmail.com';
+  if (isDisposableEmail(email)) {
+    return json({ ok: true });
+  }
+
+  const human = await verifyTurnstile(turnstile);
+  if (!human) {
+    throw error(400, 'Could not verify you are human. Please try again.');
+  }
+
+  const senderEmail = (env.CONTACT_SENDER ?? '').trim() || SITE_EMAIL;
+  const recipient = (env.CONTACT_TO ?? '').trim() || SITE_EMAIL;
   const senderName = env.CONTACT_SENDER_NAME ?? 'Elevate Media Productions';
 
   const body = {
@@ -56,15 +74,26 @@ export const POST: RequestHandler = async ({ request }) => {
     textContent: `New message from the website\n\nFrom: ${name} <${email}>\nSubject: ${subject}\n\n${message}`
   };
 
-  const res = await fetch('https://api.brevo.com/v3/smtp/email', {
-    method: 'POST',
-    headers: {
-      'api-key': apiKey,
-      'accept': 'application/json',
-      'content-type': 'application/json'
-    },
-    body: JSON.stringify(body)
-  });
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 8000);
+
+  let res: Response;
+  try {
+    res = await fetch('https://api.brevo.com/v3/smtp/email', {
+      method: 'POST',
+      headers: {
+        'api-key': apiKey,
+        'accept': 'application/json',
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify(body),
+      signal: controller.signal
+    });
+  } catch {
+    throw error(504, 'Email service timed out. Please try again later.');
+  } finally {
+    clearTimeout(timeout);
+  }
 
   if (!res.ok) {
     const detail = await res.text().catch(() => '');

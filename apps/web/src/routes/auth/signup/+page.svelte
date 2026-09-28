@@ -1,43 +1,45 @@
 <script lang="ts">
-  import { Mail, Lock, User, Eye, EyeOff, Github, ArrowLeft } from 'lucide-svelte';
+  import { Mail, Lock, User, Eye, EyeOff, ArrowLeft } from 'lucide-svelte';
   import Reveal from '$lib/components/ui/Reveal.svelte';
   import Logo from '$lib/components/ui/Logo.svelte';
+  import Turnstile from '$lib/components/ui/Turnstile.svelte';
   import { goto } from '$app/navigation';
-  import { supabase, supabaseConfigured } from '$lib/supabase';
+  import { supabaseConfigured } from '$lib/supabase';
 
   let name = $state('');
   let email = $state('');
   let password = $state('');
+  let website = $state('');
+  let turnstileToken = $state('');
   let showPw = $state(false);
   let loading = $state(false);
   let error = $state('');
   let sent = $state(false);
+  let agreed = $state(false);
 
   async function onSubmit(e: Event) {
     e.preventDefault();
     loading = true;
     error = '';
     try {
-      if (!supabaseConfigured || !supabase) {
+      if (!supabaseConfigured) {
         error = 'Authentication is not configured yet. Add your Supabase keys to .env and redeploy.';
         return;
       }
-      const { data, error: authError } = await supabase.auth.signUp({
-        email,
-        password,
-        options: {
-          data: { full_name: name, username: email.split('@')[0] },
-          emailRedirectTo: `${window.location.origin}/auth/login`
-        }
+      const res = await fetch('/api/auth/signup', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ name, email, password, website, turnstile: turnstileToken })
       });
-      if (authError) {
-        error = authError.message;
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) {
+        error = data.error ?? 'Could not create your account. Please try again.';
         return;
       }
-      if (data.session) {
-        goto('/dashboard');
-      } else {
+      if (data.sent) {
         sent = true;
+      } else {
+        goto('/dashboard');
       }
     } catch {
       error = 'An error occurred. Please try again.';
@@ -79,6 +81,11 @@
         </a>
       {:else}
         <form onsubmit={onSubmit} class="space-y-4">
+        <!-- Honeypot: hidden from humans, bots fill it -->
+        <div class="hidden" aria-hidden="true">
+          <label for="website">Website</label>
+          <input id="website" type="text" tabindex="-1" autocomplete="off" bind:value={website} />
+        </div>
         <div>
           <label for="name" class="mb-1.5 block text-sm font-medium text-ink dark:text-slate-200">Full name</label>
           <div class="relative">
@@ -107,20 +114,20 @@
             </button>
           </div>
         </div>
-        <button type="submit" disabled={loading} class="btn-gradient w-full !py-3">
+        <Turnstile bind:token={turnstileToken} />
+        <label for="consent" class="flex items-start gap-3 text-sm text-ink-light dark:text-slate-400">
+          <input id="consent" type="checkbox" bind:checked={agreed} class="mt-0.5 h-4 w-4 shrink-0 rounded border-slate-300 accent-primary-500" />
+          <span>
+            I agree to the
+            <a href="/terms" class="text-primary-500 hover:underline">Terms of Service</a>
+            and
+            <a href="/privacy" class="text-primary-500 hover:underline">Privacy Policy</a>.
+          </span>
+        </label>
+        <button type="submit" disabled={loading || !agreed} class="btn-gradient w-full !py-3">
           {loading ? 'Creating account...' : 'Create account'}
         </button>
       </form>
-
-      <div class="my-5 flex items-center gap-4">
-        <span class="h-px flex-1 bg-slate-200/60 dark:bg-white/10"></span>
-        <span class="text-xs text-ink-light dark:text-slate-500">or continue with</span>
-        <span class="h-px flex-1 bg-slate-200/60 dark:bg-white/10"></span>
-      </div>
-
-      <button type="button" class="btn-outline w-full !py-3 !text-ink dark:!text-slate-200">
-        <Github size={17} /> GitHub
-      </button>
 
       <p class="mt-6 text-center text-sm text-ink-light dark:text-slate-400">
         Already have an account?

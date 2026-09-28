@@ -1,12 +1,15 @@
 <script lang="ts">
-  import { Mail, Lock, Github, Eye, EyeOff } from 'lucide-svelte';
+  import { Mail, Lock, Eye, EyeOff } from 'lucide-svelte';
   import Reveal from '$lib/components/ui/Reveal.svelte';
   import Logo from '$lib/components/ui/Logo.svelte';
+  import Turnstile from '$lib/components/ui/Turnstile.svelte';
   import { goto } from '$app/navigation';
-  import { supabase, supabaseConfigured } from '$lib/supabase';
+  import { supabaseConfigured } from '$lib/supabase';
 
   let email = $state('');
   let password = $state('');
+  let website = $state('');
+  let turnstileToken = $state('');
   let showPw = $state(false);
   let loading = $state(false);
   let error = $state('');
@@ -16,13 +19,18 @@
     loading = true;
     error = '';
     try {
-      if (!supabaseConfigured || !supabase) {
+      if (!supabaseConfigured) {
         error = 'Authentication is not configured yet. Add your Supabase keys to .env and redeploy.';
         return;
       }
-      const { error: authError } = await supabase.auth.signInWithPassword({ email, password });
-      if (authError) {
-        error = authError.message;
+      const res = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ email, password, website, turnstile: turnstileToken })
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) {
+        error = data.error ?? 'Invalid email or password.';
         return;
       }
       goto('/dashboard');
@@ -57,6 +65,11 @@
       {/if}
 
       <form onsubmit={onSubmit} class="space-y-4">
+        <!-- Honeypot: hidden from humans, bots fill it -->
+        <div class="hidden" aria-hidden="true">
+          <label for="website">Website</label>
+          <input id="website" type="text" tabindex="-1" autocomplete="off" bind:value={website} />
+        </div>
         <div>
           <label for="email" class="mb-1.5 block text-sm font-medium text-ink dark:text-slate-200">Email</label>
           <div class="relative">
@@ -82,24 +95,19 @@
           </div>
           <a href="/auth/forgot" class="mt-2 block text-xs text-primary-500 hover:underline">Forgot password?</a>
         </div>
+        <Turnstile bind:token={turnstileToken} />
         <button type="submit" disabled={loading} class="btn-gradient w-full !py-3">
           {loading ? 'Signing in...' : 'Sign in'}
         </button>
       </form>
 
-      <div class="my-5 flex items-center gap-4">
-        <span class="h-px flex-1 bg-slate-200/60 dark:bg-white/10"></span>
-        <span class="text-xs text-ink-light dark:text-slate-500">or continue with</span>
-        <span class="h-px flex-1 bg-slate-200/60 dark:bg-white/10"></span>
-      </div>
-
-      <button type="button" class="btn-outline w-full !py-3 !text-ink dark:!text-slate-200">
-        <Github size={17} /> GitHub
-      </button>
-
       <p class="mt-6 text-center text-sm text-ink-light dark:text-slate-400">
         Don't have an account?
         <a href="/auth/signup" class="font-medium text-primary-500 hover:underline"> Create one free</a>
+      </p>
+      <p class="mt-3 text-center text-xs text-ink-light dark:text-slate-500">
+        By signing in you agree to the
+        <a href="/privacy" class="text-primary-500 hover:underline">Privacy Policy</a>.
       </p>
     </div>
   </Reveal>

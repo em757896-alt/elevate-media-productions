@@ -10,40 +10,40 @@
   --font-display: 'Space Grotesk Variable', ui-sans-serif, system-ui, sans-serif;
   --font-poppins: 'Poppins', ui-sans-serif, system-ui, sans-serif;
 
-  --color-primary-50: #eef2ff;
-  --color-primary-100: #e0e7ff;
-  --color-primary-200: #c7d2fe;
-  --color-primary-300: #a5b4fc;
-  --color-primary-400: #818cf8;
-  --color-primary-500: #6366f1;
-  --color-primary-600: #4f46e5;
-  --color-primary-700: #4338ca;
-  --color-primary-800: #3730a3;
-  --color-primary-900: #312e81;
-  --color-primary-950: #1e1b4b;
+  --color-primary-50: #f1f0ff;
+  --color-primary-100: #e3e1ff;
+  --color-primary-200: #c9c6fe;
+  --color-primary-300: #a9a3fc;
+  --color-primary-400: #8a7ffa;
+  --color-primary-500: #6c5cf8;
+  --color-primary-600: #5340f2;
+  --color-primary-700: #4630d4;
+  --color-primary-800: #3a29ac;
+  --color-primary-900: #2e2185;
+  --color-primary-950: #1c1350;
 
-  --color-secondary-50: #fdf2f8;
-  --color-secondary-100: #fce7f3;
-  --color-secondary-200: #fbcfe8;
-  --color-secondary-300: #f9a8d4;
-  --color-secondary-400: #f472b6;
-  --color-secondary-500: #ec4899;
-  --color-secondary-600: #db2777;
-  --color-secondary-700: #be185d;
-  --color-secondary-800: #9d174d;
-  --color-secondary-900: #831843;
+  --color-secondary-50: #f5f3ff;
+  --color-secondary-100: #ede9fe;
+  --color-secondary-200: #ddd6fe;
+  --color-secondary-300: #c4b5fd;
+  --color-secondary-400: #a78bfa;
+  --color-secondary-500: #8b5cf6;
+  --color-secondary-600: #7c3aed;
+  --color-secondary-700: #6d28d9;
+  --color-secondary-800: #5b21b6;
+  --color-secondary-900: #4c1d95;
 
   --color-accent-300: #5eead4;
   --color-accent-400: #2dd4bf;
   --color-accent-500: #14b8a6;
   --color-accent-600: #0d9488;
 
-  --color-night: #0f172a;
-  --color-night-light: #16213a;
-  --color-night-lighter: #1e293b;
+  --color-night: #0b0716;
+  --color-night-light: #150f26;
+  --color-night-lighter: #1e1633;
   --color-ink: #1e293b;
   --color-ink-light: #475569;
-  --color-fog: #f8fafc;
+  --color-fog: #faf9ff;
   --color-fog-light: #ffffff;
 
   --animate-float: float 6s ease-in-out infinite;
@@ -55,8 +55,8 @@
   --animate-orbit: orbit 12s linear infinite;
   --animate-blink: blink 1.4s infinite both;
 
-  --shadow-glow: 0 0 40px -10px rgb(99 102 241 / 0.45);
-  --shadow-glow-pink: 0 0 40px -10px rgb(236 72 153 / 0.4);
+  --shadow-glow: 0 0 40px -10px rgb(108 92 248 / 0.45);
+  --shadow-glow-emerald: 0 0 40px -10px rgb(139 92 246 / 0.4);
   --shadow-card: 0 1px 0 rgba(255, 255, 255, 0.05), 0 20px 40px -20px rgba(2, 6, 23, 0.5);
 
   @keyframes float {
@@ -106,7 +106,7 @@
   }
 
   ::selection {
-    background: rgb(99 102 241 / 0.3);
+    background: rgb(108 92 248 / 0.3);
   }
 
   ::-webkit-scrollbar {
@@ -116,7 +116,7 @@
     background: transparent;
   }
   ::-webkit-scrollbar-thumb {
-    background: linear-gradient(180deg, #6366f1, #ec4899);
+    background: linear-gradient(180deg, #6c5cf8, #a78bfa);
     border-radius: 999px;
   }
 }
@@ -128,26 +128,26 @@
 
   .text-gradient {
     @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(90deg, #818cf8, #f472b6, #2dd4bf);
+    background-image: linear-gradient(90deg, #8a7ffa, #a78bfa, #8b5cf6);
   }
 
   .text-gradient-primary {
     @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(135deg, #818cf8, #f472b6);
+    background-image: linear-gradient(135deg, #6c5cf8, #a78bfa);
   }
 
   .bg-mesh {
     background-image:
-      radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.12) 0px, transparent 50%),
-      radial-gradient(at 100% 0%, rgba(236, 72, 153, 0.1) 0px, transparent 50%),
+      radial-gradient(at 0% 0%, rgba(108, 92, 248, 0.12) 0px, transparent 50%),
+      radial-gradient(at 100% 0%, rgba(139, 92, 246, 0.1) 0px, transparent 50%),
       radial-gradient(at 100% 100%, rgba(20, 184, 166, 0.1) 0px, transparent 50%),
-      radial-gradient(at 0% 100%, rgba(99, 102, 241, 0.08) 0px, transparent 50%);
+      radial-gradient(at 0% 100%, rgba(108, 92, 248, 0.08) 0px, transparent 50%);
   }
 
   .bg-grid {
     background-image:
-      linear-gradient(to right, rgb(99 102 241 / 0.06) 1px, transparent 1px),
-      linear-gradient(to bottom, rgb(99 102 241 / 0.06) 1px, transparent 1px);
+      linear-gradient(to right, rgb(108 92 248 / 0.06) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(108 92 248 / 0.06) 1px, transparent 1px);
     background-size: 64px 64px;
   }
 
@@ -170,7 +170,7 @@
     inset: 0;
     border-radius: inherit;
     padding: 1px;
-    background: linear-gradient(135deg, rgba(129, 140, 248, 0.6), rgba(244, 114, 182, 0.4), rgba(45, 212, 191, 0.6));
+    background: linear-gradient(135deg, rgba(138, 127, 250, 0.6), rgba(167, 139, 250, 0.4), rgba(45, 212, 191, 0.6));
     -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
@@ -180,14 +180,14 @@
 
   .btn-gradient {
     @apply relative inline-flex items-center justify-center gap-2 rounded-xl px-6 py-3 font-medium text-white transition-all duration-300;
-    background-image: linear-gradient(135deg, #6366f1, #a855f7, #ec4899);
+    background-image: linear-gradient(135deg, #6c5cf8, #5340f2, #8b5cf6);
     background-size: 200% 200%;
-    box-shadow: 0 4px 20px -4px rgba(99, 102, 241, 0.5);
+    box-shadow: 0 4px 20px -4px rgba(108, 92, 248, 0.5);
   }
-  .btn-gradient:hover {
+  btn-gradient:hover {
     background-position: 100% 100%;
     transform: translateY(-2px);
-    box-shadow: 0 8px 30px -4px rgba(168, 85, 247, 0.6);
+    box-shadow: 0 8px 30px -4px rgba(139, 92, 246, 0.5);
   }
   .btn-gradient:active {
     transform: translateY(0);
@@ -199,8 +199,8 @@
     color: rgb(226 232 240 / 0.9);
   }
   .btn-outline:hover {
-    border-color: rgb(129 140 248 / 0.6);
-    background: rgb(99 102 241 / 0.1);
+    border-color: rgb(138 127 250 / 0.6);
+    background: rgb(108 92 248 / 0.1);
     transform: translateY(-2px);
   }
 
@@ -209,7 +209,7 @@
   }
   .card-hover:hover {
     transform: translateY(-6px);
-    box-shadow: 0 24px 48px -12px rgba(79, 70, 229, 0.35);
+    box-shadow: 0 24px 48px -12px rgba(83, 64, 242, 0.35);
   }
 
   .animate-float { animation: var(--animate-float); }

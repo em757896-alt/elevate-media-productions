@@ -30,6 +30,8 @@
     }
   });
 
+  const showAuth = $derived(isActive('/forum') || isActive('/blog'));
+
   const headerClass = $derived(
     `fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
       scrolled
@@ -95,9 +97,11 @@
           {($session.user.full_name ?? $session.user.username ?? 'U').slice(0, 1).toUpperCase()}
         </a>
       {:else}
-        <a href="/auth/login" class="btn-gradient hidden !px-4 !py-2 !text-sm sm:inline-flex">
-          Sign in
-        </a>
+        {#if showAuth}
+          <a href="/auth/login" class="btn-gradient hidden !px-4 !py-2 !text-sm sm:inline-flex">
+            Sign in
+          </a>
+        {/if}
       {/if}
 
       <button
@@ -137,10 +141,12 @@
           {#if $session.user}
             <a href="/dashboard" class="btn-gradient flex-1 !py-2.5" onclick={() => (mobileOpen = false)}>Dashboard</a>
           {:else}
-            <a href="/auth/login" class="btn-gradient flex-1 !py-2.5" onclick={() => (mobileOpen = false)}>Sign in</a>
-            <a href="/auth/signup" class="btn-outline flex-1 !py-2.5 !text-ink dark:!text-slate-200" onclick={() => (mobileOpen = false)}>
-              Join free
-            </a>
+            {#if showAuth}
+              <a href="/auth/login" class="btn-gradient flex-1 !py-2.5" onclick={() => (mobileOpen = false)}>Sign in</a>
+              <a href="/auth/signup" class="btn-outline flex-1 !py-2.5 !text-ink dark:!text-slate-200" onclick={() => (mobileOpen = false)}>
+                Join free
+              </a>
+            {/if}
           {/if}
         </div>
       </div>

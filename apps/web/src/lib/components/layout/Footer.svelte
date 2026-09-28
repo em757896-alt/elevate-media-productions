@@ -2,6 +2,7 @@
   import { Github, Linkedin, Phone, Heart, ArrowUpRight } from 'lucide-svelte';
   import Reddit from '$lib/components/ui/Reddit.svelte';
   import WhatsApp from '$lib/components/ui/WhatsApp.svelte';
+  import Turnstile from '$lib/components/ui/Turnstile.svelte';
   import Logo from '$lib/components/ui/Logo.svelte';
   import { nav, site } from '$lib/config';
 
@@ -14,6 +15,37 @@
   ];
 
   const year = new Date().getFullYear();
+
+  let email = $state('');
+  let newsletterStatus = $state<'idle' | 'loading' | 'success' | 'error'>('idle');
+  let newsletterMsg = $state('');
+  let turnstileToken = $state('');
+
+  async function subscribe(e: SubmitEvent) {
+    e.preventDefault();
+    if (newsletterStatus === 'loading') return;
+    newsletterStatus = 'loading';
+    newsletterMsg = '';
+    try {
+      const res = await fetch('/api/newsletter', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ email, turnstile: turnstileToken, website: '' })
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) {
+        newsletterStatus = 'error';
+        newsletterMsg = (data as { error?: string }).error ?? 'Something went wrong. Please try again.';
+        return;
+      }
+      newsletterStatus = 'success';
+      newsletterMsg = 'Check your inbox to confirm your subscription.';
+      email = '';
+    } catch {
+      newsletterStatus = 'error';
+      newsletterMsg = 'Network error. Please try again.';
+    }
+  }
 </script>
 
 <footer class="relative border-t border-slate-200/60 bg-fog-light dark:border-white/10 dark:bg-night">
@@ -83,20 +115,31 @@
         </p>
         <form
           class="mt-4 flex gap-2"
-          action="/?subscribe=1"
-          method="get"
+          onsubmit={subscribe}
         >
           <input
             type="email"
             required
-            name="email"
+            bind:value={email}
             placeholder="you@example.com"
-            class="w-full rounded-xl border border-slate-200/80 bg-fog-light px-4 py-2.5 text-sm text-ink outline-none transition-colors focus:border-primary-500 dark:border-white/10 dark:bg-night-lighter dark:text-white"
+            disabled={newsletterStatus === 'loading'}
+            class="w-full rounded-xl border border-slate-200/80 bg-fog-light px-4 py-2.5 text-sm text-ink outline-none transition-colors focus:border-primary-500 disabled:opacity-60 dark:border-white/10 dark:bg-night-lighter dark:text-white"
           />
-          <button type="submit" class="btn-gradient !px-4 !py-2.5 !text-sm">
-            Join
+          <button type="submit" class="btn-gradient !px-4 !py-2.5 !text-sm" disabled={newsletterStatus === 'loading'}>
+            {newsletterStatus === 'loading' ? 'Joining...' : 'Join'}
           </button>
         </form>
+        <div class="flex justify-start"><Turnstile bind:token={turnstileToken} /></div>
+        {#if newsletterMsg}
+          <p
+            class="mt-3 text-xs"
+            class:text-green-600={newsletterStatus === 'success'}
+            class:text-red-500={newsletterStatus === 'error'}
+            role={newsletterStatus === 'error' ? 'alert' : 'status'}
+          >
+            {newsletterMsg}
+          </p>
+        {/if}
       </div>
     </div>
 
@@ -104,9 +147,13 @@
       class="mt-14 flex flex-col items-center justify-between gap-4 border-t border-slate-200/60 pt-8 text-sm text-ink-light dark:border-white/10 dark:text-slate-400 md:flex-row"
     >
       <p>© {year} {site.name}. All rights reserved.</p>
-      <p class="inline-flex items-center gap-1.5">
-        Crafted with <Heart size={14} class="text-secondary-500" fill="currentColor" />
-      </p>
+      <div class="flex items-center gap-5">
+        <a href="/privacy" class="transition-colors hover:text-primary-500 dark:hover:text-primary-400">Privacy Policy</a>
+        <a href="/terms" class="transition-colors hover:text-primary-500 dark:hover:text-primary-400">Terms</a>
+        <p class="inline-flex items-center gap-1.5">
+          Crafted with <Heart size={14} class="text-secondary-500" fill="currentColor" />
+        </p>
+      </div>
     </div>
   </div>
 </footer>

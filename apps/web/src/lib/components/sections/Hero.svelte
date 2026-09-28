@@ -1,6 +1,12 @@
 <script lang="ts">
   import Reveal from '$lib/components/ui/Reveal.svelte';
-  import { site, stats } from '$lib/config';
+  import CountUp from '$lib/components/ui/CountUp.svelte';
+
+  const counters = [
+    { value: 5, suffix: '+', label: 'Products shipped' },
+    { value: 22, suffix: '', label: 'Technologies mastered' },
+    { value: 100, suffix: '%', label: 'Client satisfaction' }
+  ];
 </script>
 
 <section class="relative overflow-hidden pb-28 pt-36 md:pt-40 lg:pb-32">
@@ -47,20 +53,9 @@
     </div>
 
     <Reveal>
-      <div class="mx-auto mt-24 grid max-w-4xl grid-cols-2 gap-6 sm:grid-cols-4">
-        {#each stats as stat, i}
-          <div
-            class="glass group relative overflow-hidden rounded-2xl p-5 text-center transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-primary-500/10 cursor-default"
-          >
-            <span
-              class="block font-display text-2xl font-bold tracking-tight text-ink dark:text-white sm:text-3xl"
-            >
-              {stat.value}
-            </span>
-            <span class="mt-1 block text-sm text-ink-light dark:text-slate-400">
-              {stat.label}
-            </span>
-          </div>
+      <div class="mx-auto mt-24 grid max-w-3xl grid-cols-1 gap-6 sm:grid-cols-3">
+        {#each counters as counter, i}
+          <CountUp value={counter.value} suffix={counter.suffix} label={counter.label} />
         {/each}
       </div>
     </Reveal>

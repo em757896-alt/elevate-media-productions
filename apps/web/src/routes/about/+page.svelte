@@ -63,13 +63,20 @@
                 class="flex h-20 w-20 items-center justify-center rounded-full text-2xl font-bold font-display text-white shadow-lg"
                 style="background: {member.gradient}"
               >
-                {member.initials}
+                {#if member.name === 'Emmanuel Michael'}
+                  <img src="/founder.jpg" alt="Emmanuel Michael" class="h-full w-full rounded-full object-cover" width="80" height="80" />
+                {:else}
+                  {member.initials}
+                {/if}
               </div>
               <div>
                 <h4 class="font-display text-lg font-bold text-ink dark:text-white">{member.name}</h4>
                 <p class="mt-0.5 text-sm font-medium text-primary-500">{member.role}</p>
               </div>
               <p class="text-sm text-ink-light dark:text-slate-400">{member.bio}</p>
+              {#if member.name === 'Emmanuel Michael'}
+                <a href="/about-me" class="text-sm font-medium text-primary-500 hover:underline">See more about Emmanuel →</a>
+              {/if}
             </div>
           </Reveal>
         {/each}

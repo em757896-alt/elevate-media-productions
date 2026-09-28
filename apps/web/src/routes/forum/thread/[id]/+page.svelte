@@ -60,9 +60,20 @@
         <Reveal>
           <h1 class="font-display text-2xl font-bold text-ink dark:text-white sm:text-3xl">{thread.title}</h1>
           <div class="mt-3 flex items-center gap-3">
+            {#if thread.author_avatar}
+            <img
+              src={thread.author_avatar}
+              alt={thread.author_name}
+              width="32"
+              height="32"
+              loading="lazy"
+              class="h-8 w-8 rounded-full object-cover"
+            />
+          {:else}
             <div class="flex h-8 w-8 items-center justify-center rounded-full text-xs font-bold text-white" style="background: {avatarColor(thread.author_name)}">
               {thread.author_name.split(' ').map((n) => n[0]).join('')}
             </div>
+          {/if}
             <div class="text-sm">
               <span class="font-medium text-ink dark:text-white">{thread.author_name}</span>
               <span class="mx-2 text-ink-light dark:text-slate-500">·</span>

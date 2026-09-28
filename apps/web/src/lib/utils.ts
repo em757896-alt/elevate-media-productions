@@ -57,12 +57,11 @@ export function initials(name: string | null | undefined): string {
 
 export function avatarColor(seed: string): string {
   const colors = [
-    'linear-gradient(135deg, #6366f1, #a855f7)',
-    'linear-gradient(135deg, #ec4899, #f97316)',
-    'linear-gradient(135deg, #14b8a6, #6366f1)',
-    'linear-gradient(135deg, #8b5cf6, #ec4899)',
-    'linear-gradient(135deg, #f59e0b, #ec4899)',
-    'linear-gradient(135deg, #06b6d4, #6366f1)'
+    'linear-gradient(135deg, #6c5cf8, #8b5cf6)',
+    'linear-gradient(135deg, #8b5cf6, #14b8a6)',
+    'linear-gradient(135deg, #5340f2, #a78bfa)',
+    'linear-gradient(135deg, #6d28d9, #6c5cf8)',
+    'linear-gradient(135deg, #7c3aed, #2dd4bf)'
   ];
   let hash = 0;
   for (let i = 0; i < seed.length; i++) {

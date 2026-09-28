@@ -50,9 +50,20 @@
             {#each threads as thread (thread.id)}
               <li>
                 <a href="/forum/thread/{thread.id}" class="group flex items-start gap-3 rounded-xl px-4 py-3 transition-colors hover:bg-ink/5 dark:hover:bg-white/5">
-                  <div class="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-primary-500 to-secondary-500 text-xs font-bold text-white">
-                    {thread.author_name.split(' ').map((n) => n[0]).join('')}
-                  </div>
+{#if thread.author_avatar}
+                      <img
+                        src={thread.author_avatar}
+                        alt={thread.author_name}
+                        width="36"
+                        height="36"
+                        loading="lazy"
+                        class="h-9 w-9 flex-shrink-0 rounded-full object-cover"
+                      />
+                    {:else}
+                      <div class="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-primary-500 to-secondary-500 text-xs font-bold text-white">
+                        {thread.author_name.split(' ').map((n) => n[0]).join('')}
+                      </div>
+                    {/if}
                   <div class="flex-1 min-w-0">
                     <div class="flex items-center gap-2 flex-wrap">
                       {#if thread.pinned}

@@ -8,6 +8,14 @@ export const projects: Project[] = [
     long_description:
       'Elevate Media University is a complete institution management platform built to modernize the academic experience. It ships with three dedicated role-based portals: students can enrol in courses, view results and access learning materials; staff can manage classes, mark attendance and update grades; administrators get a full analytics dashboard with user and department management. The platform uses serverless API routes for rapid iteration and a PostgreSQL database for reliable, structured storage with Auth.js-powered JWT sessions for secure role-based access.',
     image_url: '',
+    screenshots: [
+      '/projects/elevate-media-university/shot-1.png',
+      '/projects/elevate-media-university/shot-2.png',
+      '/projects/elevate-media-university/shot-3.png',
+      '/projects/elevate-media-university/shot-4.png',
+      '/projects/elevate-media-university/shot-5.png',
+      '/projects/elevate-media-university/shot-6.png'
+    ],
     demo_url: 'https://elevate-media-dun.vercel.app',
     github_url: 'https://github.com/em757896-alt/emmanuel-tech-portfolio/tree/main/projects/websites/elevate-media-university',
     tech_tags: ['Next.js', 'React 19', 'TypeScript', 'Tailwind CSS', 'Supabase', 'Prisma', 'Auth.js'],
@@ -26,6 +34,7 @@ export const projects: Project[] = [
     long_description:
       'Civic Compliance Hub is built for civic organizations and the public: a bilingual (English/Kiswahili) platform that raises legal awareness, provides compliance-maturity self-assessment tools, monitors civic space through incident reporting and visualises trends with interactive charts. It features a friendly AI legal-assistant chatbot that answers frequently asked questions around civic rights and compliance obligations.',
     image_url: '',
+    screenshots: [],
     demo_url: 'https://civiccompliancehub.gt.tc/',
     github_url: 'https://github.com/em757896-alt/emmanuel-tech-portfolio/tree/main/projects/websites/civic-compliance-system',
     tech_tags: ['PHP', 'MySQL', 'Bootstrap', 'JavaScript', 'Chart.js', 'jQuery'],
@@ -44,6 +53,7 @@ export const projects: Project[] = [
     long_description:
       'This platform reimagines the student portal with an immersive rendered 3D campus that students can explore, paired with practical everyday tools: live timetables, a searchable digital library and a comprehensive admin dashboard for academic records. Built with a custom vanilla-JavaScript design system and Three.js 3D rendering (with a graceful 2D fallback), it demonstrates performance-conscious engineering without heavyweight frameworks.',
     image_url: '',
+    screenshots: [],
     demo_url: 'https://studentmanagement.gt.tc/',
     github_url: 'https://github.com/em757896-alt/emmanuel-tech-portfolio/tree/main/projects/websites/student-management-system',
     tech_tags: ['JavaScript', 'Three.js', 'HTML5', 'CSS3', 'PHP', 'MySQL'],
@@ -62,6 +72,7 @@ export const projects: Project[] = [
     long_description:
       'TrackSpend is a mobile finance companion for Android. A background SMS broadcast receiver intelligently detects banking messages and auto-categorises spend, while a clean Jetpack Compose UI makes budgeting effortless. Biometric fingerprint/PIN unlocks protect sensitive data, and the Supabase backend keeps expenses synchronised across devices with offline support.',
     image_url: '',
+    screenshots: [],
     demo_url: null,
     github_url: 'https://github.com/em757896-alt/emmanuel-tech-portfolio/tree/main/projects/applications/mobile%20apps/trackspend-native',
     tech_tags: ['Kotlin', 'Jetpack Compose', 'Supabase', 'Android', 'Gradle'],
@@ -80,6 +91,7 @@ export const projects: Project[] = [
     long_description:
       'The Elevate Media Productions flagship brand platform. Beyond a business showcase, it is a developer community: threaded discussions, blog articles, a project gallery and a complete admin dashboard — all wrapped in a fast, accessible, animated experience built with SvelteKit and Tailwind CSS.',
     image_url: '',
+    screenshots: [],
     demo_url: null,
     github_url: 'https://github.com/em757896-alt/elevate-media-productions',
     tech_tags: ['SvelteKit', 'Svelte 5', 'TypeScript', 'Tailwind CSS', 'Supabase', 'Motion'],

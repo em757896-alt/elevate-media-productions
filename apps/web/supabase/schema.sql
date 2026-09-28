@@ -259,6 +259,8 @@ create table if not exists public.subscribers (
   id uuid primary key default gen_random_uuid(),
   email text not null unique,
   name text,
+  consent_at timestamptz not null default now(),
+  confirm_token text unique,
   verified boolean not null default false,
   unsubscribed boolean not null default false,
   created_at timestamptz not null default now()
@@ -271,10 +273,59 @@ create policy "Anyone can subscribe"
   on public.subscribers for insert
   with check (true);
 
+drop policy if exists "Admins can update subscribers" on public.subscribers;
+create policy "Admins can update subscribers"
+  on public.subscribers for update
+  using (exists (select 1 from public.profiles where id = auth.uid() and role = 'admin'));
+
 drop policy if exists "Only admins can view subscribers" on public.subscribers;
 create policy "Only admins can view subscribers"
   on public.subscribers for select
   using (exists (select 1 from public.profiles where id = auth.uid() and role = 'admin'));
+
+-- ============================================================
+-- NEWSLETTER CONFIRM / UNSUBSCRIBE (security definer RPCs)
+-- Verified token holders can confirm or unsubscribe without auth.
+-- ============================================================
+create or replace function public.confirm_subscription(p_token text)
+returns void
+language plpgsql
+security definer set search_path = public, auth
+as $$
+begin
+  update public.subscribers
+    set verified = true, confirm_token = null
+    where confirm_token = p_token and verified = false and unsubscribed = false;
+  if not found then
+    raise exception 'invalid or expired token';
+  end if;
+end;
+$$;
+
+create or replace function public.unsubscribe_subscription(p_token text)
+returns void
+language plpgsql
+security definer set search_path = public, auth
+as $$
+begin
+  update public.subscribers
+    set unsubscribed = true, confirm_token = null
+    where email = (select email from public.subscribers where confirm_token = p_token);
+  if not found then
+    raise exception 'invalid or expired token';
+  end if;
+end;
+$$;
+
+grant execute on function public.confirm_subscription(text) to anon, authenticated;
+grant execute on function public.unsubscribe_subscription(text) to anon, authenticated;
+
+-- ============================================================
+-- FOUNDER PHOTO STORAGE
+-- Enable: Supabase Dashboard -> Storage -> New bucket
+--   name: founder-photos, public: false
+-- Admin-only uploads; public read handled via signed URL in app.
+-- ============================================================
 
 -- ============================================================
 -- CONTACT MESSAGES

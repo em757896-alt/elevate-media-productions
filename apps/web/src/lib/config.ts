@@ -27,7 +27,8 @@ export const nav = {
   ],
   footer: [
     { label: 'Home', href: '/' },
-    { label: 'About', href: '/about' },
+    { label: 'About us', href: '/about' },
+    { label: 'About me', href: '/about-me' },
     { label: 'Services', href: '/services' },
     { label: 'Portfolio', href: '/portfolio' },
     { label: 'Blog', href: '/blog' },
@@ -37,10 +38,10 @@ export const nav = {
 } as const;
 
 export const stats = [
-  { value: '4+', label: 'Products shipped' },
+  { value: '5', label: 'Products shipped' },
   { value: '5+', label: 'Technologies mastered' },
   { value: '100%', label: 'Client satisfaction' },
-  { value: '2025', label: 'Founded' }
+  { value: '2026', label: 'Founded' }
 ] as const;
 
 export const services = [
@@ -187,17 +188,17 @@ export const faqs = [
 
 export const team = [
   {
-    name: 'Emmanuel K.',
+    name: 'Emmanuel Michael',
     role: 'Founder & Lead Developer',
     bio: 'Builder of web apps, mobile experiences and the platforms that power them.',
-    initials: 'EK',
-    gradient: 'linear-gradient(135deg, #6366f1, #a855f7)'
+    initials: 'EM',
+    gradient: 'linear-gradient(135deg, #6c5cf8, #8b5cf6)'
   },
   {
     name: 'You?',
     role: 'Join the team',
     bio: 'Elevate Media grows through collaboration. Contributors, designers and engineers welcome in the forum.',
     initials: '+',
-    gradient: 'linear-gradient(135deg, #ec4899, #f59e0b)'
+    gradient: 'linear-gradient(135deg, #8b5cf6, #14b8a6)'
   }
 ] as const;

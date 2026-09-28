@@ -6,10 +6,10 @@
   import { session } from '$lib/stores/session';
 
   const cards = [
-    { label: 'Total Projects', value: projects.length, icon: FolderOpen, color: 'from-primary-500 to-purple-500' },
-    { label: 'Published Posts', value: blogPosts.length, icon: FileText, color: 'from-secondary-500 to-pink-500' },
-    { label: 'Forum Threads', value: forumThreads.length, icon: MessageCircle, color: 'from-accent-500 to-teal-500' },
-    { label: 'Active Users', value: 12, icon: Users, color: 'from-amber-500 to-orange-500' }
+    { label: 'Total Projects', value: projects.length, icon: FolderOpen, color: 'from-primary-500 to-secondary-500' },
+    { label: 'Published Posts', value: blogPosts.length, icon: FileText, color: 'from-secondary-500 to-secondary-400' },
+    { label: 'Forum Threads', value: forumThreads.length, icon: MessageCircle, color: 'from-accent-500 to-primary-500' },
+    { label: 'Active Users', value: 12, icon: Users, color: 'from-primary-600 to-primary-400' }
   ];
 </script>
 
