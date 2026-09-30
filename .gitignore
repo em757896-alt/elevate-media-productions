@@ -12,6 +12,11 @@
 **/.env
 **/.env.*
 !**/.env.example
+# `vercel env pull` snapshots contain real server-side secrets (BREVO_API_KEY,
+# TURNSTILE_SECRET_KEY, OIDC tokens) — keep them local, never publish.
+**/.brand-env
+*.env
+.env*
 
 # Logs
 *.log
