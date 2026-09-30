@@ -26,7 +26,7 @@
         subtitle="Developers sharing work, asking hard questions and helping each other build better products."
       />
 
-      <div class="grid gap-7 lg:grid-cols-[1fr_1.5fr]">
+      <div class="grid grid-cols-1 gap-7 lg:grid-cols-[1fr_1.5fr]">
         <Reveal>
           <div class="glass rounded-2xl p-6">
             <div class="mb-5 flex items-center gap-3">

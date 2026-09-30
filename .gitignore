@@ -22,6 +22,9 @@
 .DS_Store
 Thumbs.db
 
+# Local screenshot upload staging area (archived into apps/web/static/projects/)
+Screeenshots/
+
 # IDE
 .idea/
 .vscode/*

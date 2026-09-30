@@ -105,8 +105,17 @@ export const projects: Project[] = [
       'This very website — a full brand platform built with SvelteKit, featuring an interactive forum, a blog and a rich portfolio of Elevate Media work.',
     long_description:
       'The Elevate Media Productions flagship brand platform. Beyond a business showcase, it is a developer community: threaded discussions, blog articles, a project gallery and a complete admin dashboard — all wrapped in a fast, accessible, animated experience built with SvelteKit and Tailwind CSS.',
-    image_url: '/projects/thumbs/brand.jpg',
-    screenshots: [],
+    image_url: '/projects/elevate-media-productions/front-page.png',
+    screenshots: [
+      '/projects/elevate-media-productions/front-page.png',
+      '/projects/elevate-media-productions/screenshot-134.png',
+      '/projects/elevate-media-productions/screenshot-135.png',
+      '/projects/elevate-media-productions/screenshot-136.png',
+      '/projects/elevate-media-productions/screenshot-137.png',
+      '/projects/elevate-media-productions/screenshot-138.png',
+      '/projects/elevate-media-productions/screenshot-139.png',
+      '/projects/elevate-media-productions/screenshot-140.png'
+    ],
     demo_url: null,
     github_url: 'https://github.com/em757896-alt/elevate-media-productions',
     tech_tags: ['SvelteKit', 'Svelte 5', 'TypeScript', 'Tailwind CSS', 'Supabase', 'Motion'],

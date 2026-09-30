@@ -1,45 +1,7 @@
 <script lang="ts">
-  import { Mail, Lock, Eye, EyeOff } from 'lucide-svelte';
+  import { ArrowLeft, Hammer, Shield } from 'lucide-svelte';
   import Reveal from '$lib/components/ui/Reveal.svelte';
   import Logo from '$lib/components/ui/Logo.svelte';
-  import Turnstile from '$lib/components/ui/Turnstile.svelte';
-  import { goto } from '$app/navigation';
-  import { supabaseConfigured } from '$lib/supabase';
-
-  let email = $state('');
-  let password = $state('');
-  let website = $state('');
-  let turnstileToken = $state('');
-  let showPw = $state(false);
-  let loading = $state(false);
-  let error = $state('');
-
-  async function onSubmit(e: Event) {
-    e.preventDefault();
-    loading = true;
-    error = '';
-    try {
-      if (!supabaseConfigured) {
-        error = 'Authentication is not configured yet. Add your Supabase keys to .env and redeploy.';
-        return;
-      }
-      const res = await fetch('/api/auth/login', {
-        method: 'POST',
-        headers: { 'content-type': 'application/json' },
-        body: JSON.stringify({ email, password, website, turnstile: turnstileToken })
-      });
-      const data = await res.json().catch(() => ({}));
-      if (!res.ok) {
-        error = data.error ?? 'Invalid email or password.';
-        return;
-      }
-      goto('/dashboard');
-    } catch {
-      error = 'An error occurred. Please try again.';
-    } finally {
-      loading = false;
-    }
-  }
 </script>
 
 <svelte:head>
@@ -54,61 +16,31 @@
     <div class="glass w-full max-w-md rounded-2xl p-8">
       <div class="flex flex-col items-center mb-7">
         <Logo size="md" />
-        <h1 class="mt-5 font-display text-2xl font-bold text-ink dark:text-white">Welcome back</h1>
-        <p class="mt-1 text-sm text-ink-light dark:text-slate-400">Sign in to your account</p>
+        <h1 class="mt-5 font-display text-2xl font-bold text-ink dark:text-white">Member dashboards in progress</h1>
+        <p class="mt-1 text-sm text-ink-light dark:text-slate-400">Sign-in is temporarily disabled</p>
       </div>
 
-      {#if error}
-        <div class="mb-5 rounded-xl bg-secondary-500/10 px-4 py-3 text-sm text-secondary-600 dark:text-secondary-400">
-          {error}
+      <div class="rounded-2xl border border-primary-500/20 bg-primary-500/5 p-6 text-center">
+        <div class="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-primary-500 to-secondary-500 text-white shadow-glow">
+          <Hammer size={22} />
         </div>
-      {/if}
+        <p class="text-sm leading-relaxed text-ink-light dark:text-slate-300">
+          We are building the member dashboards and community features.
+        </p>
+        <p class="mt-3 text-sm leading-relaxed text-ink-light dark:text-slate-400">
+          Existing member logins will reopen as soon as the dashboards are ready.
+        </p>
+      </div>
 
-      <form onsubmit={onSubmit} class="space-y-4">
-        <!-- Honeypot: hidden from humans, bots fill it -->
-        <div class="hidden" aria-hidden="true">
-          <label for="website">Website</label>
-          <input id="website" type="text" tabindex="-1" autocomplete="off" bind:value={website} />
-        </div>
-        <div>
-          <label for="email" class="mb-1.5 block text-sm font-medium text-ink dark:text-slate-200">Email</label>
-          <div class="relative">
-            <Mail size={16} class="absolute left-4 top-1/2 -translate-y-1/2 text-ink-light dark:text-slate-500" />
-            <input id="email" type="email" bind:value={email} required placeholder="you@example.com"
-              class="w-full rounded-xl border border-slate-200/80 bg-fog-light py-3 pl-11 pr-4 text-sm text-ink outline-none focus:border-primary-500 dark:border-white/10 dark:bg-night-lighter dark:text-white" />
-          </div>
-        </div>
-        <div>
-          <label for="password" class="mb-1.5 block text-sm font-medium text-ink dark:text-slate-200">Password</label>
-          <div class="relative">
-            <Lock size={16} class="absolute left-4 top-1/2 -translate-y-1/2 text-ink-light dark:text-slate-500" />
-            <input id="password" type={showPw ? 'text' : 'password'} bind:value={password} required placeholder="Enter your password"
-              class="w-full rounded-xl border border-slate-200/80 bg-fog-light py-3 pl-11 pr-11 text-sm text-ink outline-none focus:border-primary-500 dark:border-white/10 dark:bg-night-lighter dark:text-white" />
-            <button type="button" class="absolute right-3 top-1/2 -translate-y-1/2 text-ink-light dark:text-slate-500"
-              onclick={() => showPw = !showPw} aria-label="Toggle password visibility">
-              {#if showPw}
-                <EyeOff size={16} />
-              {:else}
-                <Eye size={16} />
-              {/if}
-            </button>
-          </div>
-          <a href="/auth/forgot" class="mt-2 block text-xs text-primary-500 hover:underline">Forgot password?</a>
-        </div>
-        <Turnstile bind:token={turnstileToken} />
-        <button type="submit" disabled={loading} class="btn-gradient w-full !py-3">
-          {loading ? 'Signing in...' : 'Sign in'}
-        </button>
-      </form>
+      <div class="mt-6 rounded-xl border border-slate-200/70 bg-fog-light px-4 py-3 text-center text-sm text-ink-light dark:border-white/10 dark:bg-night-lighter dark:text-slate-400">
+        <Shield size={15} class="mx-auto mb-1 text-primary-500" />
+        While we work, see our <a href="/portfolio" class="font-medium text-primary-500 hover:underline">projects</a> or
+        <a href="/contact" class="font-medium text-primary-500 hover:underline">contact us</a>.
+      </div>
 
-      <p class="mt-6 text-center text-sm text-ink-light dark:text-slate-400">
-        Don't have an account?
-        <a href="/auth/signup" class="font-medium text-primary-500 hover:underline"> Create one free</a>
-      </p>
-      <p class="mt-3 text-center text-xs text-ink-light dark:text-slate-500">
-        By signing in you agree to the
-        <a href="/privacy" class="text-primary-500 hover:underline">Privacy Policy</a>.
-      </p>
+      <a href="/" class="btn-outline mt-6 w-full !py-3 !text-ink dark:!text-slate-200">
+        <ArrowLeft size={16} /> Back to home
+      </a>
     </div>
   </Reveal>
 </div>
