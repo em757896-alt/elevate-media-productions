@@ -1,6 +1,5 @@
 <script lang="ts">
   import Reveal from '$lib/components/ui/Reveal.svelte';
-  import Logo from '$lib/components/ui/Logo.svelte';
 </script>
 
 <section class="hero-section relative isolate overflow-hidden text-white">
@@ -8,10 +7,6 @@
   <div class="hero-light" aria-hidden="true"></div>
 
   <div class="container-x relative z-10 flex min-h-[680px] flex-col">
-    <div class="hero-brand pt-7 md:pt-9">
-      <Logo size="lg" />
-    </div>
-
     <div class="hero-copy mt-auto max-w-[760px] pb-16 pt-24 md:pb-20 lg:pb-24">
       <Reveal>
         <p class="mb-5 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[.24em] text-white/65 md:text-xs">
@@ -139,7 +134,6 @@
         linear-gradient(90deg, rgba(27,26,35,.24), rgba(27,26,35,.72) 76%),
         linear-gradient(0deg, #1b1a23 0%, transparent 42%);
     }
-    .hero-brand :global(a) { transform: scale(.9); transform-origin: left top; }
     .hero-copy { padding-bottom: 72px; }
   }
 </style>
