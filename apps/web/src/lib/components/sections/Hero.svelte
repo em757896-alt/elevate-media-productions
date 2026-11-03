@@ -19,28 +19,28 @@
       <Reveal>
         <div class="mb-8 flex flex-wrap items-center gap-3 text-[10px] font-semibold uppercase tracking-[.2em] text-white/55 sm:text-xs">
           <span class="h-px w-8 bg-primary-500"></span>
-          Independent digital product studio
+          Launching our community platform
         </div>
       </Reveal>
       <Reveal>
         <h1 class="max-w-[760px] font-display text-[2.55rem] font-semibold leading-[1.08] tracking-[-.045em] text-white sm:text-5xl md:text-6xl lg:text-[4.35rem]">
-          We build software<br class="hidden sm:block" />
-          that moves your<br class="hidden sm:block" />
-          business forward.
+          We craft digital<br class="hidden sm:block" />
+          experiences that<br class="hidden sm:block" />
+          <span class="text-primary-400 italic">elevate</span> brands.
         </h1>
       </Reveal>
       <Reveal>
         <p class="mt-6 max-w-xl text-base leading-7 text-white/65 md:text-lg">
-          Elevate Media Productions creates web applications, mobile products and digital platforms designed to solve real problems and help organisations grow.
+          Elevate Media Productions builds web applications, mobile apps and community platforms that help organizations <span class="font-medium text-white">launch, grow and engage their audiences</span>.
         </p>
       </Reveal>
       <Reveal>
         <div class="mt-9 flex flex-col gap-3 sm:flex-row">
-          <a href="/contact" class="btn-gradient min-w-44 !rounded-sm !px-6 !py-3.5 text-sm">
-            Start a conversation <span aria-hidden="true">→</span>
+          <a href="/portfolio" class="btn-gradient min-w-44 !rounded-sm !px-6 !py-3.5 text-sm">
+            See our work
           </a>
-          <a href="/portfolio" class="btn-outline min-w-40 !rounded-sm !px-6 !py-3.5 text-sm">
-            Explore our work
+          <a href="/about" class="btn-outline min-w-40 !rounded-sm !px-6 !py-3.5 text-sm">
+            Learn more
           </a>
         </div>
       </Reveal>
