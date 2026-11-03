@@ -12,19 +12,13 @@
   }[size];
 </script>
 
-<a
-  href="/"
-  class="group inline-flex items-center gap-2.5"
-  aria-label="{site.shortName} home"
->
-  <span
-    class="{dims.box} relative inline-flex items-center justify-center rounded-xl bg-gradient-to-br from-primary-500 via-purple-500 to-secondary-500 text-white shadow-glow transition-transform duration-300 group-hover:scale-105"
-  >
+<a href="/" class="group inline-flex items-center gap-2.5" aria-label="{site.shortName} home">
+  <span class="{dims.box} relative inline-flex items-center justify-center rounded-sm border border-primary-400/40 bg-[#24242b] text-primary-400 shadow-[0_0_22px_-10px_rgba(217,54,64,.8)] transition-transform duration-300 group-hover:scale-105">
     <Icon name="rocket" size={dims.mark} />
   </span>
   {#if text}
-    <span class="font-display {dims.text} font-bold tracking-tight text-ink dark:text-white">
-      Elevate<span class="text-gradient"> Media</span>
+    <span class="font-display {dims.text} font-semibold tracking-tight text-ink dark:text-white">
+      Elevate<span class="text-primary-400"> Media</span>
     </span>
   {/if}
 </a>
