@@ -38,6 +38,25 @@
   />
   <meta property="og:title" content="Elevate Media Productions" />
   <meta property="og:description" content="Web applications, mobile apps and brand platforms — crafted to elevate." />
+  <link rel="canonical" href="https://elevatemediaproductions.cc/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://elevatemediaproductions.cc/" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Elevate Media Productions",
+      "url": "https://elevatemediaproductions.cc/",
+      "description": "Web applications, mobile apps and community platforms that help organizations launch, grow and engage their audiences.",
+      "email": "elevatemediaproductions1@gmail.com",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Mombasa",
+        "addressCountry": "KE"
+      }
+    }
+  </script>
 </svelte:head>
 
 {#if toast}
