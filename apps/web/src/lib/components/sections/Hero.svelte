@@ -1,103 +1,139 @@
 <script lang="ts">
   import Reveal from '$lib/components/ui/Reveal.svelte';
-  import CountUp from '$lib/components/ui/CountUp.svelte';
-
-  const counters = [
-    { value: 5, suffix: '+', label: 'Products shipped' },
-    { value: 22, suffix: '', label: 'Technologies mastered' },
-    { value: 100, suffix: '%', label: 'Client satisfaction' }
-  ];
 </script>
 
-<section class="hero-section relative isolate overflow-hidden bg-[#1b1b22] pb-20 pt-28 text-white md:pt-32 lg:pb-24">
-  <div class="hero-grid pointer-events-none absolute inset-0 opacity-40"></div>
-  <div class="hero-ribbon" aria-hidden="true"></div>
-  <div class="hero-shade pointer-events-none absolute inset-0" aria-hidden="true"></div>
+<section class="hero-section relative isolate overflow-hidden text-white">
+  <div class="hero-orb" aria-hidden="true"></div>
+  <div class="hero-light" aria-hidden="true"></div>
 
-  <div class="container-x relative z-10">
-    <div class="max-w-[760px]">
+  <div class="container-x relative z-10 flex min-h-[680px] flex-col">
+    <div class="hero-copy mt-auto max-w-[760px] pb-16 pt-24 md:pb-20 lg:pb-24">
       <Reveal>
-        <div class="mb-8 flex flex-wrap items-center gap-3 text-[10px] font-semibold uppercase tracking-[.2em] text-white/55 sm:text-xs">
-          <span class="h-px w-8 bg-primary-500"></span>
-          Launching our community platform
-        </div>
-      </Reveal>
-      <Reveal>
-        <h1 class="max-w-[760px] font-display text-[2.55rem] font-semibold leading-[1.08] tracking-[-.045em] text-white sm:text-5xl md:text-6xl lg:text-[4.35rem]">
-          We craft digital<br class="hidden sm:block" />
-          experiences that<br class="hidden sm:block" />
-          <span class="text-primary-400 italic">elevate</span> brands.
-        </h1>
-      </Reveal>
-      <Reveal>
-        <p class="mt-6 max-w-xl text-base leading-7 text-white/65 md:text-lg">
-          Elevate Media Productions builds web applications, mobile apps and community platforms that help organizations <span class="font-medium text-white">launch, grow and engage their audiences</span>.
+        <p class="mb-5 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[.24em] text-white/65 md:text-xs">
+          <span class="h-px w-9 bg-[#d93640]"></span>
+          Elevate Media Productions
         </p>
       </Reveal>
       <Reveal>
-        <div class="mt-9 flex flex-col gap-3 sm:flex-row">
-          <a href="/portfolio" class="btn-gradient min-w-44 !rounded-sm !px-6 !py-3.5 text-sm">
-            See our work
-          </a>
-          <a href="/about" class="btn-outline min-w-40 !rounded-sm !px-6 !py-3.5 text-sm">
-            Learn more
-          </a>
+        <h1 class="max-w-[760px] font-display text-[2.45rem] font-semibold leading-[1.08] tracking-[-.045em] text-white sm:text-5xl md:text-6xl lg:text-[4.15rem]">
+          We craft digital experiences that <span class="text-[#e14b55]">elevate</span> brands.
+        </h1>
+      </Reveal>
+      <Reveal>
+        <p class="mt-6 max-w-[560px] text-base leading-7 text-white/70 md:text-lg">
+          Elevate Media Productions builds web applications, mobile apps and community platforms that help organizations launch, grow and engage their audiences.
+        </p>
+      </Reveal>
+      <Reveal>
+        <div class="mt-8 flex flex-wrap items-center gap-3">
+          <a href="/portfolio" class="hero-button">Explore our work <span aria-hidden="true">→</span></a>
+          <a href="/about" class="hero-text-link">Discover Elevate</a>
         </div>
       </Reveal>
     </div>
-
-    <Reveal>
-      <div class="mt-20 grid max-w-3xl grid-cols-1 border-t border-white/15 pt-7 sm:grid-cols-3 sm:gap-8">
-        {#each counters as counter}
-          <div class="py-2">
-            <CountUp value={counter.value} suffix={counter.suffix} label={counter.label} />
-          </div>
-        {/each}
-      </div>
-    </Reveal>
   </div>
 </section>
 
 <style>
-  .hero-section { min-height: 690px; }
-  .hero-grid {
-    background-image: linear-gradient(to right, rgba(255,255,255,.035) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,.035) 1px, transparent 1px);
-    background-size: 74px 74px;
-    mask-image: linear-gradient(to bottom, black, transparent 90%);
-  }
-  .hero-ribbon {
-    position: absolute; z-index: 0; pointer-events: none;
-    width: clamp(430px, 64vw, 850px); aspect-ratio: 1;
-    left: clamp(190px, 36vw, 520px); top: -32%;
-    border-radius: 50%;
-    transform: rotate(-18deg);
+  .hero-section {
+    min-height: 680px;
     background:
-      radial-gradient(ellipse at 36% 34%, rgba(255,255,255,.15), transparent 22%),
-      repeating-radial-gradient(ellipse at 38% 38%, #08090d 0 9px, #24242c 10px 12px, #0b0c11 13px 20px),
-      radial-gradient(ellipse at 40% 38%, #34343c, #090a0e 68%);
-    box-shadow: inset -34px -28px 65px rgba(0,0,0,.8), inset 12px 8px 28px rgba(255,255,255,.07), 0 35px 100px rgba(0,0,0,.55);
-    opacity: .96;
-    -webkit-mask-image: radial-gradient(ellipse at 48% 48%, #000 48%, rgba(0,0,0,.92) 61%, transparent 72%);
-    mask-image: radial-gradient(ellipse at 48% 48%, #000 48%, rgba(0,0,0,.92) 61%, transparent 72%);
+      radial-gradient(ellipse at 52% 38%, rgba(73,67,81,.28), transparent 44%),
+      linear-gradient(112deg, #201f29 0%, #1b1a23 56%, #17161f 100%);
   }
-  .hero-ribbon::before {
-    content: ''; position: absolute; inset: 2%; border-radius: inherit;
-    background: repeating-radial-gradient(ellipse at 38% 38%, transparent 0 18px, rgba(191,39,51,.82) 19px 20px, rgba(255,104,112,.16) 21px 22px, transparent 23px 34px);
-    filter: drop-shadow(0 0 5px rgba(205,42,54,.45));
-    -webkit-mask-image: radial-gradient(ellipse at 46% 46%, #000 35%, transparent 70%);
-    mask-image: radial-gradient(ellipse at 46% 46%, #000 35%, transparent 70%);
+  .hero-orb {
+    position: absolute;
+    z-index: 0;
+    pointer-events: none;
+    width: min(72vw, 930px);
+    aspect-ratio: 1;
+    left: clamp(-260px, -13vw, -110px);
+    top: clamp(-470px, -37vw, -250px);
+    border-radius: 50%;
+    transform: rotate(-17deg);
+    background:
+      radial-gradient(ellipse at 34% 28%, rgba(255,255,255,.11), transparent 20%),
+      repeating-radial-gradient(ellipse at 39% 38%,
+        #08090d 0 7px,
+        #171820 8px 12px,
+        #05060a 13px 19px,
+        #282832 20px 22px,
+        #090a0e 23px 30px);
+    box-shadow:
+      inset -45px -42px 90px rgba(0,0,0,.88),
+      inset 16px 12px 35px rgba(255,255,255,.07),
+      28px 42px 100px rgba(0,0,0,.55);
+    -webkit-mask-image: radial-gradient(ellipse at 48% 48%, #000 52%, rgba(0,0,0,.96) 66%, transparent 76%);
+    mask-image: radial-gradient(ellipse at 48% 48%, #000 52%, rgba(0,0,0,.96) 66%, transparent 76%);
   }
-  .hero-ribbon::after {
-    content: ''; position: absolute; inset: 0; border-radius: inherit;
-    background: linear-gradient(135deg, transparent 35%, rgba(217,54,64,.12) 48%, transparent 58%);
+  .hero-orb::before {
+    content: '';
+    position: absolute;
+    inset: 1%;
+    border-radius: inherit;
+    background: repeating-radial-gradient(ellipse at 39% 38%,
+      transparent 0 18px,
+      rgba(181,35,48,.82) 19px 20px,
+      rgba(235,79,88,.25) 21px 22px,
+      transparent 23px 34px);
+    filter: drop-shadow(0 0 4px rgba(204,42,55,.42));
+    -webkit-mask-image: radial-gradient(ellipse at 48% 48%, #000 38%, transparent 73%);
+    mask-image: radial-gradient(ellipse at 48% 48%, #000 38%, transparent 73%);
+  }
+  .hero-orb::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: linear-gradient(145deg, transparent 32%, rgba(221,51,64,.12) 48%, transparent 61%);
     mix-blend-mode: screen;
   }
-  .hero-shade {
-    background: linear-gradient(90deg, #1b1b22 0%, rgba(27,27,34,.96) 25%, rgba(27,27,34,.65) 55%, rgba(27,27,34,.18) 100%), linear-gradient(0deg, #1b1b22 0%, transparent 35%);
+  .hero-light {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      linear-gradient(90deg, rgba(27,26,35,.08) 0%, rgba(27,26,35,.1) 34%, rgba(27,26,35,.72) 69%, rgba(27,26,35,.12) 100%),
+      linear-gradient(0deg, #1b1a23 0%, transparent 29%);
   }
-  @media (max-width: 700px) {
-    .hero-section { min-height: 690px; }
-    .hero-ribbon { width: 560px; left: 25%; top: -12%; opacity: .56; }
-    .hero-shade { background: linear-gradient(90deg, rgba(27,27,34,.97), rgba(27,27,34,.76)), linear-gradient(0deg, #1b1b22 0%, transparent 50%); }
+  .hero-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 18px;
+    min-height: 46px;
+    padding: 0 20px;
+    color: white;
+    background: #c92e39;
+    font-size: 13px;
+    font-weight: 600;
+    transition: background .2s ease;
+  }
+  .hero-button:hover { background: #a9212c; }
+  .hero-text-link {
+    padding: 12px 5px;
+    color: rgba(255,255,255,.78);
+    font-size: 13px;
+    font-weight: 500;
+  }
+  .hero-text-link:hover { color: white; }
+  @media (min-width: 900px) {
+    .hero-section { min-height: 740px; }
+    .hero-copy { padding-bottom: 92px; }
+    .hero-orb { width: min(68vw, 900px); left: -150px; top: -380px; }
+    .hero-light {
+      background:
+        linear-gradient(90deg, rgba(27,26,35,.02) 0%, rgba(27,26,35,.08) 36%, rgba(27,26,35,.78) 74%, rgba(27,26,35,.16) 100%),
+        linear-gradient(0deg, #1b1a23 0%, transparent 30%);
+    }
+  }
+  @media (max-width: 699px) {
+    .hero-section { min-height: 700px; }
+    .hero-orb { width: 670px; left: -300px; top: -265px; opacity: .78; }
+    .hero-light {
+      background:
+        linear-gradient(90deg, rgba(27,26,35,.24), rgba(27,26,35,.72) 76%),
+        linear-gradient(0deg, #1b1a23 0%, transparent 42%);
+    }
+    .hero-copy { padding-bottom: 72px; }
   }
 </style>
