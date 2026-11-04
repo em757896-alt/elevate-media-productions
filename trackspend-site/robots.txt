@@ -1,1 +1,3 @@
-User-agent: *\nAllow: /\nSitemap: https://app.elevatemediaproductions.cc/sitemap.xml\n
+User-agent: *
+Allow: /
+Sitemap: https://app.elevatemediaproductions.cc/sitemap.xml
