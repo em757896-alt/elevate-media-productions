@@ -31,13 +31,50 @@
 </script>
 
 <svelte:head>
-  <title>Elevate Media Productions — We craft digital experiences that elevate brands.</title>
+  <title>Web &amp; Mobile App Development in Mombasa | Elevate Media</title>
   <meta
     name="description"
-    content="Elevate Media Productions builds web applications, mobile apps and community platforms that help organizations launch, grow and engage their audiences."
+    content="Elevate Media Productions designs and builds websites, Android apps, business platforms and digital experiences for organisations in Mombasa, Nairobi and beyond."
   />
-  <meta property="og:title" content="Elevate Media Productions" />
-  <meta property="og:description" content="Web applications, mobile apps and brand platforms — crafted to elevate." />
+  <meta name="robots" content="index,follow,max-image-preview:large" />
+  <meta name="googlebot" content="index,follow,max-image-preview:large" />
+  <meta property="og:site_name" content="Elevate Media Productions" />
+  <meta property="og:title" content="Web &amp; Mobile App Development in Mombasa | Elevate Media" />
+  <meta property="og:description" content="Websites, Android apps and digital platforms for organisations in Mombasa, Nairobi and beyond." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://elevatemediaproductions.cc/" />
+  <link rel="canonical" href="https://elevatemediaproductions.cc/" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Elevate Media Productions — Web &amp; App Development" />
+  <meta name="twitter:description" content="Websites, Android apps and digital platforms built in Kenya." />
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Elevate Media Productions",
+      "url": "https://elevatemediaproductions.cc/",
+      "description": "Web and mobile app development, digital product design and community platforms for organisations in Mombasa, Nairobi and beyond.",
+      "email": "elevatemediaproductions1@gmail.com",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Mombasa",
+        "addressRegion": "Mombasa County",
+        "addressCountry": "KE"
+      },
+      "areaServed": [
+        { "@type": "City", "name": "Mombasa" },
+        { "@type": "City", "name": "Nairobi" },
+        { "@type": "Country", "name": "Kenya" }
+      ],
+      "knowsAbout": [
+        "Web application development",
+        "Android application development",
+        "Digital product design",
+        "Community platforms",
+        "Website performance optimisation"
+      ]
+    }
+  </script>
 </svelte:head>
 
 {#if toast}
