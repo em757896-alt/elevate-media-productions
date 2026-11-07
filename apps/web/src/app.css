@@ -55,9 +55,9 @@
   --animate-orbit: orbit 12s linear infinite;
   --animate-blink: blink 1.4s infinite both;
 
-  --shadow-glow: 0 0 40px -10px rgb(108 92 248 / 0.45);
-  --shadow-glow-emerald: 0 0 40px -10px rgb(139 92 246 / 0.4);
-  --shadow-card: 0 1px 0 rgba(255, 255, 255, 0.05), 0 20px 40px -20px rgba(2, 6, 23, 0.5);
+  --shadow-glow: 0 12px 32px -18px rgb(25 29 23 / 0.24);
+  --shadow-glow-emerald: 0 12px 32px -18px rgb(25 29 23 / 0.18);
+  --shadow-card: 0 14px 34px -24px rgba(25, 29, 23, 0.22);
 
   @keyframes float {
     0%, 100% { transform: translateY(0); }
@@ -267,4 +267,32 @@
   .prose-custom :is(blockquote) {
     @apply my-4 border-l-4 border-primary-500 pl-4 italic;
   }
+}
+
+/* Elevate studio system — consistent across every public page */
+@layer utilities {
+  .bg-mesh {
+    background-image: radial-gradient(ellipse at 85% 5%, rgba(184,217,87,.10), transparent 42%), radial-gradient(ellipse at 5% 95%, rgba(240,138,109,.07), transparent 38%);
+  }
+  .glass, .glass-strong {
+    background: #fbfaf6;
+    border: 1px solid rgba(25,29,23,.10);
+    box-shadow: 0 14px 34px -26px rgba(25,29,23,.28);
+    backdrop-filter: none;
+  }
+  .dark .glass, .dark .glass-strong {
+    background: #1b1e18;
+    border-color: rgba(243,242,235,.12);
+    box-shadow: 0 18px 40px -28px rgba(0,0,0,.7);
+  }
+  .card-hover { transition: border-color .25s ease, box-shadow .25s ease, transform .25s ease; }
+  .card-hover:hover { transform: translateY(-3px); border-color: rgba(113,133,45,.35); box-shadow: 0 22px 46px -28px rgba(25,29,23,.32); }
+  .btn-gradient { border-radius: 3px; font-weight: 650; letter-spacing: .01em; color: #f3f2eb; }
+  .btn-outline { border-radius: 3px; border-color: rgba(25,29,23,.24); font-weight: 650; }
+  .dark .btn-outline { color: #f3f2eb; border-color: rgba(243,242,235,.24); }
+  .section-padding { padding-top: clamp(4.5rem, 8vw, 7.5rem); padding-bottom: clamp(4.5rem, 8vw, 7.5rem); }
+  .project-visual { position: relative; isolation: isolate; overflow: hidden; background: #d9d9ce; border: 1px solid rgba(25,29,23,.18); box-shadow: 0 22px 50px -28px rgba(25,29,23,.4); }
+  .project-visual img { width: 100%; height: 116%; position: absolute; inset: -8% 0 auto; object-fit: cover; object-position: center; transform: scale(1.015); }
+  .dark .project-visual { background: #24291f; border-color: rgba(243,242,235,.14); }
+  :focus-visible { outline: 2px solid #8ea936; outline-offset: 3px; }
 }
