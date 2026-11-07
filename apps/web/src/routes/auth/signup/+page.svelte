@@ -16,8 +16,8 @@
     <div class="glass w-full max-w-md rounded-2xl p-8">
       <div class="flex flex-col items-center mb-7">
         <Logo size="md" />
-        <h1 class="mt-5 font-display text-2xl font-bold text-ink dark:text-white">Member accounts coming soon</h1>
-        <p class="mt-1 text-sm text-ink-light dark:text-slate-400">Join the Elevate Media community</p>
+        <h1 class="mt-5 font-display text-2xl font-bold text-ink dark:text-white">Member access in development</h1>
+        <p class="mt-1 text-sm text-ink-light dark:text-slate-400">Access the Elevate Media workspace</p>
       </div>
 
       <div class="rounded-2xl border border-primary-500/20 bg-primary-500/5 p-6 text-center">
@@ -25,7 +25,7 @@
           <Hammer size={22} />
         </div>
         <p class="text-sm leading-relaxed text-ink-light dark:text-slate-300">
-          We are working on member dashboards and the full community experience.
+          We are preparing the member workspace and account experience.
         </p>
         <p class="mt-3 text-sm leading-relaxed text-ink-light dark:text-slate-400">
           Account creation is temporarily disabled. Sign-ups will reopen as soon as the dashboards are ready.
@@ -34,9 +34,7 @@
 
       <div class="mt-6 rounded-xl border border-slate-200/70 bg-fog-light px-4 py-3 text-center text-sm text-ink-light dark:border-white/10 dark:bg-night-lighter dark:text-slate-400">
         <Shield size={15} class="mx-auto mb-1 text-primary-500" />
-        In the meantime, explore our <a href="/portfolio" class="font-medium text-primary-500 hover:underline">projects</a>, read the
-        <a href="/blog" class="font-medium text-primary-500 hover:underline"> blog</a>, or
-        <a href="/contact" class="font-medium text-primary-500 hover:underline">get in touch</a>.
+        In the meantime, explore our <a href="/portfolio" class="font-medium text-primary-500 hover:underline">selected work</a> or <a href="/contact" class="font-medium text-primary-500 hover:underline">send a project enquiry</a>.
       </div>
 
       <a href="/" class="btn-outline mt-6 w-full !py-3 !text-ink dark:!text-slate-200">
