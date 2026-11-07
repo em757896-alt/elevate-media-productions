@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Mail, Phone, Send, Github, Linkedin, MessageCircle } from 'lucide-svelte';
+  import { Mail, Phone, Send, MessageCircle } from 'lucide-svelte';
   import Reddit from '$lib/components/ui/Reddit.svelte';
   import WhatsApp from '$lib/components/ui/WhatsApp.svelte';
   import Reveal from '$lib/components/ui/Reveal.svelte';
@@ -69,7 +69,7 @@
               </div>
               <div>
                 <p class="text-xs text-ink-light dark:text-slate-500">Email us</p>
-                <a href="mailto:{site.email}" class="text-sm font-medium text-ink dark:text-white hover:text-primary-500">{site.email}</a>
+                <a href={`mailto:${site.email}`} class="text-sm font-medium text-ink dark:text-white hover:text-primary-500">{site.email}</a>
               </div>
             </div>
             <div class="flex items-center gap-4 rounded-xl p-4 transition-colors hover:bg-ink/5 dark:hover:bg-white/5">
@@ -93,7 +93,7 @@
             <div class="border-t border-slate-200/50 pt-5 dark:border-white/5">
               <p class="mb-3 text-xs font-medium text-ink-light dark:text-slate-500">Find us on</p>
               <div class="flex gap-3">
-                {#each [{ icon: Github, href: site.github, label: 'GitHub' }, { icon: Reddit, href: site.reddit, label: 'Reddit' }, { icon: Linkedin, href: site.linkedin, label: 'LinkedIn' }] as social}
+                {#each [{ icon: Reddit, href: site.reddit, label: 'Reddit' }] as social}
                   <a href={social.href} target="_blank" rel="noopener noreferrer" aria-label={social.label}
                     class="flex h-10 w-10 items-center justify-center rounded-xl border border-slate-200/70 text-ink-light transition-all hover:-translate-y-0.5 hover:border-primary-500/50 hover:text-primary-500 dark:border-white/10 dark:text-slate-400 dark:hover:text-primary-400">
                     <social.icon size={17} />
