@@ -8,7 +8,7 @@ The official brand platform for **Elevate Media Productions** — a digital stud
 - **Tailwind CSS 4** — utility-first styling with custom design tokens
 - **Supabase** — PostgreSQL database, Auth, Realtime (optional; site works with seeded data)
 - **lucide-svelte** — icon set
-- **Vercel** — deployment via `@sveltejs/adapter-auto`
+- **Cloudflare Pages** — production hosting for the official website
 
 ## Features
 
@@ -39,14 +39,11 @@ Open [http://localhost:5173](http://localhost:5173).
 
 Without Supabase keys, the site runs on seeded data so every feature is browsable.
 
-## Deploying to Vercel
+## Production hosting
 
-```bash
-npm i -g vercel
-vercel
-```
+The official website is hosted on Cloudflare Pages. The Pages project uses `apps/web` as its root directory. Production domain: [https://elevatemediaproductions.cc](https://elevatemediaproductions.cc).
 
-The `@sveltejs/adapter-auto` adapter detects Vercel automatically.
+Deployments are managed through the Elevate Media Productions Cloudflare Pages project; do not use the old Vercel deployment.
 
 ## Project Structure
 
