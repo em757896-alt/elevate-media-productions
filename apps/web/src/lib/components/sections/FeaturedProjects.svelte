@@ -9,7 +9,7 @@
   <div class="container-x">
     <Reveal>
       <div class="mb-14 flex flex-col justify-between gap-6 border-b border-ink/20 pb-8 dark:border-white/15 md:flex-row md:items-end">
-        <div><p class="mb-4 text-[11px] font-bold uppercase tracking-[.22em] text-primary-700 dark:text-primary-300">Selected work / 01—04</p><h2 class="max-w-2xl font-display text-4xl font-semibold leading-[1.02] tracking-[-.055em] text-ink dark:text-white sm:text-6xl">A few things<br/>we’ve brought to life.</h2></div>
+        <div><p class="mb-4 text-[11px] font-bold uppercase tracking-[.22em] text-primary-700 dark:text-primary-300">Selected work / 01—04</p><h2 class="max-w-2xl font-display text-4xl font-semibold leading-[1.02] tracking-[-.055em] text-ink dark:text-white sm:text-6xl">Digital products<br/>with purpose.</h2></div>
         <a href="/portfolio" class="inline-flex items-center gap-2 text-sm font-semibold text-ink transition-colors hover:text-primary-700 dark:text-white dark:hover:text-primary-300">View all projects <ArrowUpRight size={17}/></a>
       </div>
     </Reveal>
