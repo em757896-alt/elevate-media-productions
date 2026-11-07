@@ -120,7 +120,7 @@ export const projects: Project[] = [
     github_url: null,
     tech_tags: ['SvelteKit', 'Svelte 5', 'TypeScript', 'Tailwind CSS', 'Supabase', 'Motion'],
     category: 'Brand Platform',
-    featured: true,
+    featured: false,
     order: 0,
     created_at: '2025-09-11T00:00:00Z',
     updated_at: '2025-09-11T00:00:00Z'
