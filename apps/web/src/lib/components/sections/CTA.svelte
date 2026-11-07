@@ -1,21 +1,16 @@
 <script lang="ts">
   import Reveal from '$lib/components/ui/Reveal.svelte';
-  import { Rocket } from 'lucide-svelte';
+  import { ArrowUpRight } from 'lucide-svelte';
 </script>
 
-<section class="section-padding relative overflow-hidden">
-  <div class="absolute inset-0 -z-10 bg-grid opacity-40"></div>
-  <div class="absolute -top-32 left-1/2 -translate-x-1/2 h-[520px] w-[840px] rounded-full bg-primary-500/20 blur-[160px] pointer-events-none"></div>
+<section class="relative overflow-hidden bg-[#191d17] py-24 text-[#f3f2eb] md:py-32">
+  <div class="pointer-events-none absolute -right-32 -top-48 h-[600px] w-[600px] rounded-full border border-white/10"></div>
+  <div class="pointer-events-none absolute -right-12 -top-28 h-[360px] w-[360px] rounded-full border border-primary-300/30"></div>
   <div class="container-x relative">
     <Reveal>
-      <div class="glass relative overflow-hidden rounded-3xl p-9 text-center sm:p-16 md:p-20">
-        <div class="absolute -right-16 -top-16 h-48 w-48 rounded-full bg-primary-500/15 blur-3xl pointer-events-none"></div>
-        <div class="relative flex flex-col items-center gap-6">
-          <div class="flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-primary-500 to-secondary-500 text-white shadow-glow"><Rocket size={28} /></div>
-          <h2 class="font-display text-3xl font-bold tracking-tight text-ink dark:text-white sm:text-4xl md:text-5xl">Have a good idea?<br class="hidden sm:block" /> Let’s make it real.</h2>
-          <p class="max-w-xl text-ink-light dark:text-slate-400">Tell us what you want to build. We’ll help shape the right solution and a clear path to launch.</p>
-          <a href="/contact" class="btn-gradient mt-3 px-8 py-3.5 text-base">Start a conversation <span aria-hidden="true">↗</span></a>
-        </div>
+      <div class="grid gap-12 lg:grid-cols-[1fr_auto] lg:items-end">
+        <div><p class="mb-6 text-[11px] font-bold uppercase tracking-[.24em] text-primary-300">Have a project in mind?</p><h2 class="max-w-4xl font-display text-5xl font-semibold leading-[.98] tracking-[-.065em] sm:text-6xl md:text-7xl">Let’s make<br/><span class="text-primary-300">something matter.</span></h2><p class="mt-7 max-w-xl text-base leading-7 text-white/65">Bring us the challenge. We’ll bring curiosity, craft and the technical experience to move it forward.</p></div>
+        <a href="/contact" class="group inline-flex min-w-[190px] items-center justify-between gap-8 bg-primary-400 px-6 py-5 text-sm font-bold text-[#191d17] transition-colors hover:bg-[#f3f2eb]">Start a conversation <ArrowUpRight size={20} class="transition-transform group-hover:translate-x-1 group-hover:-translate-y-1"/></a>
       </div>
     </Reveal>
   </div>
