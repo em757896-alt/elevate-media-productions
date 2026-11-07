@@ -5,8 +5,10 @@ import { consumeRateLimit } from '$lib/server/rate-limit';
 import { isBotUserAgent } from '$lib/server/bot';
 import { env } from '$env/dynamic/private';
 
-const ALLOWED_ORIGINS = new Set<string>(['https://elevate-media-productions.vercel.app']);
-if (env.VERCEL_URL) ALLOWED_ORIGINS.add(`https://${env.VERCEL_URL}`);
+const ALLOWED_ORIGINS = new Set<string>([
+  'https://elevatemediaproductions.cc',
+  'https://www.elevatemediaproductions.cc'
+]);
 for (const key of Object.keys(env)) {
   if (key.startsWith('ORIGIN_')) ALLOWED_ORIGINS.add((env[key] ?? '').trim());
 }
