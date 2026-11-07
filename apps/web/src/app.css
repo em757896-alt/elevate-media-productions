@@ -170,7 +170,7 @@
     inset: 0;
     border-radius: inherit;
     padding: 1px;
-    background: linear-gradient(135deg, rgba(138, 127, 250, 0.6), rgba(167, 139, 250, 0.4), rgba(45, 212, 191, 0.6));
+    background: linear-gradient(135deg, rgba(184, 217, 87, 0.75), rgba(240, 107, 78, 0.4), rgba(141, 183, 237, 0.55));
     -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
@@ -180,12 +180,13 @@
 
   .btn-gradient {
     @apply relative inline-flex items-center justify-center gap-2 rounded-xl px-6 py-3 font-medium text-white transition-all duration-300;
-    background-image: linear-gradient(135deg, #a7c843, #8ea936, #e9785b);
+    background-image: linear-gradient(135deg, #191d17, #30382a);
     background-size: 200% 200%;
     box-shadow: 0 4px 20px -4px rgba(25, 29, 23, 0.2);
   }
-  btn-gradient:hover {
+  .btn-gradient:hover {
     background-position: 100% 100%;
+    background-image: linear-gradient(135deg, #b8d957, #d5e98b);
     color: #191d17;
     background-image: linear-gradient(135deg, #b8d957, #d5e98b);
     transform: translateY(-2px);
