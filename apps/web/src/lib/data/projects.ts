@@ -16,8 +16,8 @@ export const projects: Project[] = [
       '/projects/elevate-media-university/shot-5.png',
       '/projects/elevate-media-university/shot-6.png'
     ],
-    demo_url: 'https://elevate-media-dun.vercel.app',
-    github_url: 'https://github.com/em757896-alt/emmanuel-tech-portfolio/tree/main/projects/websites/elevate-media-university',
+    demo_url: null,
+    github_url: null,
     tech_tags: ['Next.js', 'React 19', 'TypeScript', 'Tailwind CSS', 'Supabase', 'Prisma', 'Auth.js'],
     category: 'Web Application',
     featured: true,
@@ -43,7 +43,7 @@ export const projects: Project[] = [
       '/projects/civic-compliance-system/screenshot-125.png'
     ],
     demo_url: 'https://civiccompliancehub.gt.tc/',
-    github_url: 'https://github.com/em757896-alt/emmanuel-tech-portfolio/tree/main/projects/websites/civic-compliance-system',
+    github_url: null,
     tech_tags: ['PHP', 'MySQL', 'Bootstrap', 'JavaScript', 'Chart.js', 'jQuery'],
     category: 'Civic Platform',
     featured: true,
@@ -70,7 +70,7 @@ export const projects: Project[] = [
       '/projects/student-management-system/screenshot-132.png'
     ],
     demo_url: 'https://studentmanagement.gt.tc/',
-    github_url: 'https://github.com/em757896-alt/emmanuel-tech-portfolio/tree/main/projects/websites/student-management-system',
+    github_url: null,
     tech_tags: ['JavaScript', 'Three.js', 'HTML5', 'CSS3', 'PHP', 'MySQL'],
     category: 'Web Application',
     featured: true,
@@ -80,19 +80,19 @@ export const projects: Project[] = [
   },
   {
     id: '4',
-    title: 'TrackSpend Native',
+    title: 'TrackSpend',
     slug: 'trackspend-native',
     description:
-      'A native Android finance tracker with automatic SMS-based expense detection, fingerprint authentication and a Supabase-backed sync engine.',
+      'A personal finance app in development, designed to make everyday transaction tracking, budgeting and money management clearer on Android.',
     long_description:
-      'TrackSpend is a mobile finance companion for Android. A background SMS broadcast receiver intelligently detects banking messages and auto-categorises spend, while a clean Jetpack Compose UI makes budgeting effortless. Biometric fingerprint/PIN unlocks protect sensitive data, and the Supabase backend keeps expenses synchronised across devices with offline support.',
+      'TrackSpend is Elevate Media Productions’ Android finance product. Its development focuses on practical expense tracking, budgeting, secure account access and a clear mobile experience.',
     image_url: '/projects/thumbs/trackspend.jpg',
     screenshots: [],
     demo_url: null,
-    github_url: 'https://github.com/em757896-alt/emmanuel-tech-portfolio/tree/main/projects/applications/mobile%20apps/trackspend-native',
+    github_url: null,
     tech_tags: ['Kotlin', 'Jetpack Compose', 'Supabase', 'Android', 'Gradle'],
     category: 'Mobile App',
-    featured: false,
+    featured: true,
     order: 4,
     created_at: '2025-07-01T00:00:00Z',
     updated_at: '2025-09-10T00:00:00Z'
@@ -102,9 +102,9 @@ export const projects: Project[] = [
     title: 'Elevate Media Productions',
     slug: 'elevate-media-productions',
     description:
-      'This very website — a full brand platform built with SvelteKit, featuring an interactive forum, a blog and a rich portfolio of Elevate Media work.',
+      'The Elevate Media Productions studio website — a digital home for the studio, its services and selected product work.',
     long_description:
-      'The Elevate Media Productions flagship brand platform. Beyond a business showcase, it is a developer community: threaded discussions, blog articles, a project gallery and a complete admin dashboard — all wrapped in a fast, accessible, animated experience built with SvelteKit and Tailwind CSS.',
+      'The Elevate Media Productions brand website presents the studio’s services, selected projects and ways to start a conversation. It is built with SvelteKit and Tailwind CSS.',
     image_url: '/projects/elevate-media-productions/front-page.png',
     screenshots: [
       '/projects/elevate-media-productions/front-page.png',
@@ -117,7 +117,7 @@ export const projects: Project[] = [
       '/projects/elevate-media-productions/screenshot-140.png'
     ],
     demo_url: null,
-    github_url: 'https://github.com/em757896-alt/elevate-media-productions',
+    github_url: null,
     tech_tags: ['SvelteKit', 'Svelte 5', 'TypeScript', 'Tailwind CSS', 'Supabase', 'Motion'],
     category: 'Brand Platform',
     featured: true,
