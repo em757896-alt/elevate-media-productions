@@ -1,6 +1,7 @@
 <script lang="ts">
   import { ArrowLeft, ArrowUpRight, Users } from 'lucide-svelte';
-  let { data } = $props();
+  import type { PageData } from './$types';
+  let { data }: { data: PageData } = $props();
   const authors = $derived(data.authors ?? []);
 </script>
 
