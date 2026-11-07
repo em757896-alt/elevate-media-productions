@@ -88,7 +88,7 @@ export const projects: Project[] = [
       'TrackSpend is Elevate Media Productions’ Android finance product. Its development focuses on practical expense tracking, budgeting, secure account access and a clear mobile experience.',
     image_url: '/projects/thumbs/trackspend.jpg',
     screenshots: [],
-    demo_url: null,
+    demo_url: 'https://app.elevatemediaproductions.cc',
     github_url: null,
     tech_tags: ['Kotlin', 'Jetpack Compose', 'Supabase', 'Android', 'Gradle'],
     category: 'Mobile App',
