@@ -14,7 +14,7 @@ export const load: PageServerLoad = async ({ locals }) => {
 
   const authorIds = [...new Set(rows.map((post) => post.author_id).filter(Boolean))];
   const { data: authors } = authorIds.length
-    ? await db.from('profiles').select('*').in('id', authorIds)
+    ? await db.from('profiles').select('id,username,full_name,avatar_url,author_headline,is_author').in('id', authorIds)
     : { data: [] };
 
   let categories: { id: string; name: string; slug: string; description: string }[] = [];
