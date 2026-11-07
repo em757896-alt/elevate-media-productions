@@ -51,7 +51,7 @@
 <footer class="relative border-t border-slate-200/60 bg-fog-light dark:border-white/10 dark:bg-night">
   <div class="bg-mesh pointer-events-none absolute inset-0"></div>
   <div class="container-x relative py-16">
-    <div class="grid gap-12 lg:grid-cols-[1.4fr_1fr_1fr_1.2fr]">
+    <div class="grid gap-12 lg:grid-cols-[1.4fr_1fr_1.2fr]">
       <div>
         <Logo size="lg" />
         <p class="mt-5 max-w-xs text-sm leading-relaxed text-ink-light dark:text-slate-400">
@@ -96,22 +96,10 @@
 
       <div>
         <h3 class="font-display text-sm font-semibold uppercase tracking-widest text-ink dark:text-white">
-          Community
-        </h3>
-        <ul class="mt-5 space-y-3">
-          <li><a href="/forum" class="text-sm text-ink-light transition-colors hover:text-primary-500 dark:text-slate-400">Discussions</a></li>
-          <li><a href="/blog" class="text-sm text-ink-light transition-colors hover:text-primary-500 dark:text-slate-400">Blog</a></li>
-          <li><a href="/portfolio" class="text-sm text-ink-light transition-colors hover:text-primary-500 dark:text-slate-400">Open projects</a></li>
-          <li><a href="/about" class="text-sm text-ink-light transition-colors hover:text-primary-500 dark:text-slate-400">About us</a></li>
-        </ul>
-      </div>
-
-      <div>
-        <h3 class="font-display text-sm font-semibold uppercase tracking-widest text-ink dark:text-white">
-          Newsletter
+          Stay in touch
         </h3>
         <p class="mt-5 text-sm text-ink-light dark:text-slate-400">
-          Monthly builds, launch notes and honest engineering lessons. No spam.
+          Occasional studio updates and new work. No spam.
         </p>
         <form
           class="mt-4 flex gap-2"
