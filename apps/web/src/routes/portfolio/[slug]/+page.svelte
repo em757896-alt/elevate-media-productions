@@ -72,10 +72,12 @@
             </Reveal>
           {:else}
             <Reveal>
-              <div class="glass overflow-hidden rounded-2xl bg-gradient-to-br from-primary-500/20 via-emerald-500/10 to-secondary-500/20">
-                <div class="flex h-64 items-center justify-center text-5xl font-bold font-display text-primary-500/15 dark:text-primary-500/10 sm:h-80">
-                  {project.title.slice(0, 2).toUpperCase()}
-                </div>
+              <div class="project-visual flex aspect-[16/9] items-center justify-center">
+                {#if project.image_url}
+                  <img src={project.image_url} alt={`${project.title} product identity`} loading="lazy" class="!inset-0 !h-full !object-contain !p-10" />
+                {:else}
+                  <span class="font-display text-7xl font-semibold tracking-[-.08em] text-ink/15 dark:text-white/15">{project.title.slice(0, 2).toUpperCase()}</span>
+                {/if}
               </div>
             </Reveal>
           {/if}
