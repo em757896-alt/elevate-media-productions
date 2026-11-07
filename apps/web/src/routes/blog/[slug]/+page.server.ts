@@ -18,7 +18,7 @@ export const load: PageServerLoad = async ({ locals, params }) => {
   if (post.author_id) {
     const { data } = await db
       .from('profiles')
-      .select('*')
+      .select('id,username,full_name,avatar_url,author_headline,is_author')
       .eq('id', post.author_id)
       .maybeSingle();
     author = data;
