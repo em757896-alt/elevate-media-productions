@@ -1,8 +1,9 @@
 <script lang="ts">
   import { ArrowLeft, ArrowUpRight, BookOpen } from 'lucide-svelte';
   import { formatDate } from '$lib/utils';
+  import type { PageData } from './$types';
 
-  let { data } = $props();
+  let { data }: { data: PageData } = $props();
   const author = $derived(data.author);
   const posts = $derived(data.posts ?? []);
 </script>
