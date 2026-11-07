@@ -57,10 +57,15 @@
 
           {#if project.screenshots.length > 0}
             <Reveal>
-              <div class="grid gap-5 sm:grid-cols-2">
+              <div class="grid gap-x-6 gap-y-8 sm:grid-cols-2">
                 {#each project.screenshots as shot, i}
-                  <figure class="project-visual aspect-[16/10]">
-                    <img src={shot} alt={`${project.title} product screen ${i + 1}`} loading="lazy" />
+                  <figure class:sm:col-span-2={i === 0}>
+                    <div class="project-visual aspect-[16/10]">
+                      <img src={shot} alt={`${project.title} product screen ${i + 1}`} loading="lazy" />
+                    </div>
+                    <figcaption class="mt-3 flex items-center justify-between border-b border-ink/15 pb-3 text-[10px] font-semibold uppercase tracking-[.16em] text-ink-light dark:border-white/15 dark:text-slate-500">
+                      <span>Product screen</span><span>{String(i + 1).padStart(2,'0')}</span>
+                    </figcaption>
                   </figure>
                 {/each}
               </div>
