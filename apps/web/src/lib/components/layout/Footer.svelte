@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Github, Linkedin, Phone, Heart, ArrowUpRight } from 'lucide-svelte';
+  import { Phone, Heart, ArrowUpRight } from 'lucide-svelte';
   import Reddit from '$lib/components/ui/Reddit.svelte';
   import WhatsApp from '$lib/components/ui/WhatsApp.svelte';
   import Turnstile from '$lib/components/ui/Turnstile.svelte';
@@ -7,9 +7,7 @@
   import { nav, site } from '$lib/config';
 
   const socials = [
-    { label: 'GitHub', href: site.github, Icon: Github },
     { label: 'Reddit', href: site.reddit, Icon: Reddit },
-    { label: 'LinkedIn', href: site.linkedin, Icon: Linkedin },
     { label: 'WhatsApp', href: site.whatsapp, Icon: WhatsApp },
     { label: 'Call', href: site.phone, Icon: Phone }
   ];
