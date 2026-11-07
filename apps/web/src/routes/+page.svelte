@@ -3,7 +3,6 @@
   import Hero from '$lib/components/sections/Hero.svelte';
   import FeaturedProjects from '$lib/components/sections/FeaturedProjects.svelte';
   import Services from '$lib/components/sections/Services.svelte';
-  import Testimonials from '$lib/components/sections/Testimonials.svelte';
   import Workflow from '$lib/components/sections/Workflow.svelte';
   import CTA from '$lib/components/sections/CTA.svelte';
 
@@ -49,5 +48,4 @@
 <FeaturedProjects />
 <Services />
 <Workflow />
-<Testimonials />
 <CTA />
