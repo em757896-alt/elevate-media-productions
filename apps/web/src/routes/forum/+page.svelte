@@ -12,8 +12,8 @@
 </script>
 
 <svelte:head>
-  <title>Community Forum — Elevate Media Productions</title>
-  <meta name="description" content="Join the Elevate Media developer community — share work, ask questions and build together." />
+  <title>Discussions — Elevate Media Productions</title>
+  <meta name="description" content="Product and engineering discussions from Elevate Media Productions." />
 </svelte:head>
 
 <div class="pt-28 md:pt-36">
@@ -21,9 +21,9 @@
     <div class="absolute -top-32 left-1/2 h-[480px] w-[680px] -translate-x-1/2 rounded-full bg-primary-500/20 blur-[160px] pointer-events-none"></div>
     <div class="container-x relative">
       <SectionHeading
-        badge="Community"
-        title="Forum"
-        subtitle="Developers sharing work, asking hard questions and helping each other build better products."
+        badge="Discussions"
+        title="Product discussions"
+        subtitle="A place for practical questions, product notes and engineering discussions."
       />
 
       <div class="grid grid-cols-1 gap-7 lg:grid-cols-[1fr_1.5fr]">
@@ -60,7 +60,7 @@
             <div class="mb-5 flex items-center justify-between">
               <div class="flex items-center gap-3">
                 <MessageCircle size={18} class="text-secondary-500" />
-                <h3 class="font-display text-lg font-bold text-ink dark:text-white">Recent discussions</h3>
+                <h3 class="font-display text-lg font-bold text-ink dark:text-white">Published discussions</h3>
               </div>
               <a href="/forum/new" class="btn-gradient !px-4 !py-2 !text-xs">
                 <Plus size={14} /> New thread
@@ -113,7 +113,7 @@
               {#if threads.length === 0}
                 <li class="py-10 text-center text-ink-light dark:text-slate-500">
                   <MessageCircle size={32} class="mx-auto mb-3 opacity-30" />
-                  <p>No discussions here yet. Be the first to start one!</p>
+                  <p>No discussions have been published yet.</p>
                 </li>
               {/if}
             </ul>
