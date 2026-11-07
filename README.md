@@ -98,7 +98,7 @@ services, so every page is browsable immediately. To connect Supabase auth + for
 | Styling        | Tailwind CSS 4 (CSS-first config)        |
 | Database / Auth| Supabase (PostgreSQL + Auth, optional)   |
 | Icons          | lucide-svelte                            |
-| Deployment     | Vercel (`@sveltejs/adapter-auto`)        |
+| Deployment     | Cloudflare Pages                       |
 
 ## Roadmap (highlights)
 
