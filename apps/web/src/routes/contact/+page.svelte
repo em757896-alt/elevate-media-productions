@@ -47,7 +47,7 @@
 
 <svelte:head>
   <title>Contact — Elevate Media Productions</title>
-  <meta name="description" content="Book an appointment with Elevate Media Productions for web, mobile and community platform projects." />
+  <meta name="description" content="Contact Elevate Media Productions about web applications, Android products and digital product engineering." />
 </svelte:head>
 
 <div class="pt-28 md:pt-36">
@@ -56,8 +56,8 @@
     <div class="container-x relative">
       <SectionHeading
         badge="Contact"
-        title="Book an appointment"
-        subtitle="Have a project in mind or want to collaborate? Reach out — we typically respond within 48 hours."
+        title="Tell us what you’re building"
+        subtitle="Share the problem, the idea or the product you want to improve. We’ll review your brief and get back to you."
       />
 
       <div class="grid gap-8 lg:grid-cols-[1.2fr_1.5fr]">
@@ -110,7 +110,7 @@
               <div class="flex h-14 w-14 items-center justify-center rounded-full bg-accent-500/10 text-accent-500">
                 <MessageCircle size={26} />
               </div>
-              <h3 class="mt-5 font-display text-xl font-bold text-ink dark:text-white">Request received!</h3>
+              <h3 class="mt-5 font-display text-xl font-bold text-ink dark:text-white">Your message is on its way.</h3>
               <p class="mt-2 text-sm text-ink-light dark:text-slate-400">Thanks {name.split(' ')[0] || 'there'} — one of our team will get back to you within 48 hours.</p>
               <button class="btn-outline mt-6 !text-ink dark:!text-slate-200" onclick={() => submitted = false}>
                 Send another message
@@ -156,7 +156,7 @@
                     <span class="inline-block h-4 w-4 animate-spin rounded-full border-2 border-white/40 border-t-white" aria-hidden="true"></span>
                     Sending...
                   {:else}
-                    <Send size={15} /> Book appointment
+                    <Send size={15} /> Send project enquiry
                   {/if}
                 </button>
               </div>
