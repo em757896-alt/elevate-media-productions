@@ -36,6 +36,10 @@
     name="description"
     content="Elevate Media Productions builds web applications, mobile apps and community platforms that help organizations launch, grow and engage their audiences."
   />
+  <link rel="canonical" href="https://elevatemediaproductions.cc/" />
+  <meta property="og:url" content="https://elevatemediaproductions.cc/" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
   <meta property="og:title" content="Elevate Media Productions" />
   <meta property="og:description" content="Web applications, mobile apps and brand platforms — crafted to elevate." />
 </svelte:head>
