@@ -16,7 +16,7 @@
     <div class="glass w-full max-w-md rounded-2xl p-8">
       <div class="flex flex-col items-center mb-7">
         <Logo size="md" />
-        <h1 class="mt-5 font-display text-2xl font-bold text-ink dark:text-white">Member dashboards in progress</h1>
+        <h1 class="mt-5 font-display text-2xl font-bold text-ink dark:text-white">Member portal in development</h1>
         <p class="mt-1 text-sm text-ink-light dark:text-slate-400">Sign-in is temporarily disabled</p>
       </div>
 
@@ -25,10 +25,10 @@
           <Hammer size={22} />
         </div>
         <p class="text-sm leading-relaxed text-ink-light dark:text-slate-300">
-          We are building the member dashboards and community features.
+          We are preparing a secure member workspace. Public studio pages and project enquiries remain available.
         </p>
         <p class="mt-3 text-sm leading-relaxed text-ink-light dark:text-slate-400">
-          Existing member logins will reopen as soon as the dashboards are ready.
+          Member access will reopen when the workspace is ready.
         </p>
       </div>
 
