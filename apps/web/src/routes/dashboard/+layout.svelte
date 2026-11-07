@@ -2,7 +2,7 @@
   import { page } from '$app/state';
   import {
     LayoutDashboard, FolderOpen, FileText, MessageCircle, MessagesSquare,
-    Users, Settings, LogOut, ChevronLeft, Rocket, Menu, X, ArrowUpRight
+    Users, Settings, LogOut, ChevronLeft, Rocket, Menu, X, ArrowUpRight, Newspaper
   } from 'lucide-svelte';
   import { goto } from '$app/navigation';
   import { session } from '$lib/stores/session';
@@ -16,6 +16,7 @@
     { href: '/dashboard', icon: LayoutDashboard, label: 'Overview', exact: true },
     { href: '/dashboard/projects', icon: FolderOpen, label: 'Projects' },
     { href: '/dashboard/blog', icon: FileText, label: 'Articles' },
+    { href: '/dashboard/editorial', icon: Newspaper, label: 'Editorial Desk' },
     { href: '/dashboard/forum', icon: MessageCircle, label: 'Community' },
     { href: '/dashboard/messages', icon: MessagesSquare, label: 'Messages' },
     { href: '/dashboard/users', icon: Users, label: 'Members' },
