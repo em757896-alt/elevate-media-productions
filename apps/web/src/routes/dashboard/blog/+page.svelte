@@ -14,6 +14,9 @@
     cover_image: string | null;
     author_id: string | null;
     category: string;
+    source_urls?: string[];
+    seo_title?: string | null;
+    seo_description?: string | null;
     tags: string[];
     reading_time: number;
     published: boolean;
@@ -36,7 +39,7 @@
   let editorOpen = $state(false);
   let editingId = $state<string | null>(null);
   let form = $state({
-    title: '', slug: '', excerpt: '', content: '', cover_image: '',
+    title: '', slug: '', excerpt: '', content: '', cover_image: '', source_urls: '', seo_title: '', seo_description: '',
     category: categories[0], tags: '', published: false
   });
 
@@ -69,7 +72,7 @@
 
   function openNew() {
     editingId = null;
-    form = { title: '', slug: '', excerpt: '', content: '', cover_image: '', category: categories[0], tags: '', published: false };
+    form = { title: '', slug: '', excerpt: '', content: '', cover_image: '', source_urls: '', seo_title: '', seo_description: '', category: categories[0], tags: '', published: false };
     errorMessage = '';
     successMessage = '';
     editorOpen = true;
@@ -79,7 +82,8 @@
     editingId = post.id;
     form = {
       title: post.title, slug: post.slug, excerpt: post.excerpt ?? '',
-      content: post.content, cover_image: post.cover_image ?? '',
+      content: post.content, cover_image: post.cover_image ?? '', source_urls: (post.source_urls ?? []).join('\n'),
+      seo_title: post.seo_title ?? '', seo_description: post.seo_description ?? '',
       category: post.category, tags: (post.tags ?? []).join(', '), published: post.published
     };
     errorMessage = '';
@@ -108,6 +112,9 @@
       content: form.content.trim(),
       excerpt: form.excerpt.trim() || null,
       cover_image: form.cover_image.trim() || null,
+      source_urls: form.source_urls.split('\n').map((url) => url.trim()).filter((url) => /^https?:\/\//i.test(url)),
+      seo_title: form.seo_title.trim() || null,
+      seo_description: form.seo_description.trim() || form.excerpt.trim() || null,
       author_id: $session.user.id,
       category: form.category,
       tags: form.tags.split(',').map((tag) => tag.trim()).filter(Boolean),
@@ -245,6 +252,9 @@
           <label class="block sm:col-span-2"><span class="mb-2 block text-xs font-semibold text-slate-500">Cover image URL</span><input bind:value={form.cover_image} type="url" class="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm outline-none focus:border-rose-400 dark:border-white/10 dark:bg-white/5" placeholder="https://…" /></label>
           <label class="block sm:col-span-2"><span class="mb-2 block text-xs font-semibold text-slate-500">Article body * (Markdown headings and paragraphs supported)</span><textarea bind:value={form.content} required rows="16" class="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 font-mono text-sm leading-6 outline-none focus:border-rose-400 dark:border-white/10 dark:bg-white/5" placeholder="# Opening section&#10;&#10;Write the article…&#10;&#10;## Next section" /></label>
           <label class="block sm:col-span-2"><span class="mb-2 block text-xs font-semibold text-slate-500">Tags (comma separated)</span><input bind:value={form.tags} class="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm outline-none focus:border-rose-400 dark:border-white/10 dark:bg-white/5" placeholder="AI, research, digital policy" /></label>
+          <label class="block sm:col-span-2"><span class="mb-2 block text-xs font-semibold text-slate-500">Research sources (one URL per line)</span><textarea bind:value={form.source_urls} rows="3" class="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 font-mono text-xs outline-none dark:border-white/10 dark:bg-white/5" placeholder="https://primary-source.example/report" /></label>
+          <label class="block"><span class="mb-2 block text-xs font-semibold text-slate-500">SEO title</span><input bind:value={form.seo_title} maxlength="70" class="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm dark:border-white/10 dark:bg-white/5" placeholder="Search result headline" /></label>
+          <label class="block"><span class="mb-2 block text-xs font-semibold text-slate-500">SEO description</span><textarea bind:value={form.seo_description} rows="2" maxlength="160" class="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm dark:border-white/10 dark:bg-white/5" placeholder="Concise search snippet" /></label>
         </div>
         <label class="flex items-center gap-3 rounded-xl bg-slate-50 p-4 dark:bg-white/[0.04]"><input type="checkbox" bind:checked={form.published} class="h-4 w-4 accent-rose-600" /><span><span class="block text-sm font-semibold">Publish immediately</span><span class="mt-0.5 block text-xs text-slate-500">Leave unchecked to save as a private draft.</span></span></label>
         {#if errorMessage}<p role="alert" class="text-sm text-rose-600 dark:text-rose-300">{errorMessage}</p>{/if}
