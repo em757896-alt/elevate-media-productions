@@ -3,8 +3,9 @@
   import Reveal from '$lib/components/ui/Reveal.svelte';
   import SectionHeading from '$lib/components/ui/SectionHeading.svelte';
   import { formatDate } from '$lib/utils';
+  import type { PageData } from './$types';
 
-  let { data } = $props();
+  let { data }: { data: PageData } = $props();
   const posts = $derived(data.posts ?? []);
   const categories = $derived(data.categories ?? []);
   let search = $state('');
