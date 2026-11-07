@@ -48,7 +48,7 @@
               <div class="flex gap-3">
                 {#if project.demo_url}
                   <a href={project.demo_url} target="_blank" rel="noopener noreferrer" class="btn-gradient !px-5 !py-2.5 !text-sm">
-                    <ExternalLink size={15} /> Live demo
+                    <ExternalLink size={15} /> {project.slug === 'trackspend-native' ? 'Visit TrackSpend' : 'View live project'}
                   </a>
                 {/if}
               </div>
