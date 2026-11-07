@@ -28,6 +28,7 @@ export const nav = {
     { label: 'About', href: '/about' },
     { label: 'Services', href: '/services' },
     { label: 'Portfolio', href: '/portfolio' },
+    { label: 'TrackSpend', href: '/portfolio/trackspend-native' },
     { label: 'Capabilities', href: '/skills' },
     { label: 'Contact', href: '/contact' }
   ]
