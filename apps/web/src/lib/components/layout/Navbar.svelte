@@ -28,7 +28,7 @@
 </script>
 
 <header class={headerClass}>
-  <nav class="container-x flex h-16 items-center justify-between md:h-20" aria-label="Main">
+  <nav class="container-x flex h-20 items-center justify-between md:h-24" aria-label="Main">
     <Logo />
     <div class="hidden items-center gap-1 lg:flex">
       {#each nav.main as link (link.href)}
