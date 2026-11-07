@@ -5,8 +5,6 @@
   import Services from '$lib/components/sections/Services.svelte';
   import Testimonials from '$lib/components/sections/Testimonials.svelte';
   import Workflow from '$lib/components/sections/Workflow.svelte';
-  import ForumPreview from '$lib/components/sections/ForumPreview.svelte';
-  import BlogPreview from '$lib/components/sections/BlogPreview.svelte';
   import CTA from '$lib/components/sections/CTA.svelte';
 
   let toast = $state('');
@@ -17,7 +15,7 @@
     if (!param) return;
     const map: Record<string, { text: string; tone: 'success' | 'error' }> = {
       confirmed: { text: 'You are subscribed. Welcome aboard!', tone: 'success' },
-      unsubscribed: { text: 'You have been unsubscribed. Sorry to see you go.', tone: 'success' },
+      unsubscribed: { text: 'You have been unsubscribed.', tone: 'success' },
       error: { text: 'Something went wrong. Please try again.', tone: 'error' },
       invalid: { text: 'That confirmation link is invalid or has expired.', tone: 'error' }
     };
@@ -31,26 +29,18 @@
 </script>
 
 <svelte:head>
-  <title>Elevate Media Productions — We craft digital experiences that elevate brands.</title>
-  <meta
-    name="description"
-    content="Elevate Media Productions builds web applications, mobile apps and community platforms that help organizations launch, grow and engage their audiences."
-  />
+  <title>Elevate Media Productions — Digital products, thoughtfully built.</title>
+  <meta name="description" content="We design and build polished web applications, mobile products and digital experiences for ambitious businesses." />
   <link rel="canonical" href="https://elevatemediaproductions.cc/" />
   <meta property="og:url" content="https://elevatemediaproductions.cc/" />
   <meta property="og:type" content="website" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta property="og:title" content="Elevate Media Productions" />
-  <meta property="og:description" content="Web applications, mobile apps and brand platforms — crafted to elevate." />
+  <meta property="og:description" content="Digital products, thoughtfully designed and engineered." />
 </svelte:head>
 
 {#if toast}
-  <div
-    class="fixed bottom-6 left-1/2 z-50 -translate-x-1/2 rounded-xl px-5 py-3 text-sm font-medium text-white shadow-lg shadow-black/10"
-    class:bg-emerald-600={toastTone === 'success'}
-    class:bg-rose-600={toastTone === 'error'}
-    role="status"
-  >
+  <div class="fixed bottom-6 left-1/2 z-50 -translate-x-1/2 rounded-xl px-5 py-3 text-sm font-medium text-white shadow-lg shadow-black/10" class:bg-emerald-600={toastTone === 'success'} class:bg-rose-600={toastTone === 'error'} role="status">
     {toast}
   </div>
 {/if}
@@ -59,7 +49,5 @@
 <FeaturedProjects />
 <Services />
 <Workflow />
-<ForumPreview />
 <Testimonials />
-<BlogPreview />
 <CTA />
