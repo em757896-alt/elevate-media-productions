@@ -10,41 +10,41 @@
   --font-display: 'Space Grotesk Variable', ui-sans-serif, system-ui, sans-serif;
   --font-poppins: 'Poppins', ui-sans-serif, system-ui, sans-serif;
 
-  --color-primary-50: #f1f0ff;
-  --color-primary-100: #e3e1ff;
-  --color-primary-200: #c9c6fe;
-  --color-primary-300: #a9a3fc;
-  --color-primary-400: #8a7ffa;
-  --color-primary-500: #6c5cf8;
-  --color-primary-600: #5340f2;
-  --color-primary-700: #4630d4;
-  --color-primary-800: #3a29ac;
-  --color-primary-900: #2e2185;
-  --color-primary-950: #1c1350;
+  --color-primary-50: #f2f5e8;
+  --color-primary-100: #e5ebd4;
+  --color-primary-200: #d4e2ae;
+  --color-primary-300: #c8e078;
+  --color-primary-400: #b8d957;
+  --color-primary-500: #a7c843;
+  --color-primary-600: #8ea936;
+  --color-primary-700: #71852d;
+  --color-primary-800: #596b27;
+  --color-primary-900: #414e20;
+  --color-primary-950: #283016;
 
-  --color-secondary-50: #f5f3ff;
-  --color-secondary-100: #ede9fe;
-  --color-secondary-200: #ddd6fe;
-  --color-secondary-300: #c4b5fd;
-  --color-secondary-400: #a78bfa;
-  --color-secondary-500: #8b5cf6;
-  --color-secondary-600: #7c3aed;
-  --color-secondary-700: #6d28d9;
-  --color-secondary-800: #5b21b6;
-  --color-secondary-900: #4c1d95;
+  --color-secondary-50: #fff4ed;
+  --color-secondary-100: #ffe4d8;
+  --color-secondary-200: #ffc9b6;
+  --color-secondary-300: #f7a58a;
+  --color-secondary-400: #f28a6d;
+  --color-secondary-500: #e9785b;
+  --color-secondary-600: #d65e43;
+  --color-secondary-700: #b94b35;
+  --color-secondary-800: #963d2c;
+  --color-secondary-900: #733022;
 
-  --color-accent-300: #5eead4;
-  --color-accent-400: #2dd4bf;
-  --color-accent-500: #14b8a6;
-  --color-accent-600: #0d9488;
+  --color-accent-300: #d9e7ff;
+  --color-accent-400: #b8d7ff;
+  --color-accent-500: #8db7ed;
+  --color-accent-600: #6595d0;
 
-  --color-night: #0b0716;
-  --color-night-light: #150f26;
-  --color-night-lighter: #1e1633;
-  --color-ink: #1e293b;
-  --color-ink-light: #475569;
-  --color-fog: #faf9ff;
-  --color-fog-light: #ffffff;
+  --color-night: #11130f;
+  --color-night-light: #1b1e18;
+  --color-night-lighter: #272b22;
+  --color-ink: #191d17;
+  --color-ink-light: #5d6256;
+  --color-fog: #f3f2eb;
+  --color-fog-light: #fbfaf6;
 
   --animate-float: float 6s ease-in-out infinite;
   --animate-float-slow: float 9s ease-in-out infinite;
@@ -106,7 +106,7 @@
   }
 
   ::selection {
-    background: rgb(108 92 248 / 0.3);
+    background: rgb(184 217 87 / 0.35);
   }
 
   ::-webkit-scrollbar {
@@ -116,7 +116,7 @@
     background: transparent;
   }
   ::-webkit-scrollbar-thumb {
-    background: linear-gradient(180deg, #6c5cf8, #a78bfa);
+    background: linear-gradient(180deg, #a7c843, #f28a6d);
     border-radius: 999px;
   }
 }
@@ -128,26 +128,26 @@
 
   .text-gradient {
     @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(90deg, #8a7ffa, #a78bfa, #8b5cf6);
+    background-image: linear-gradient(90deg, #b8d957, #f28a6d, #e9785b);
   }
 
   .text-gradient-primary {
     @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(135deg, #6c5cf8, #a78bfa);
+    background-image: linear-gradient(135deg, #a7c843, #f28a6d);
   }
 
   .bg-mesh {
     background-image:
-      radial-gradient(at 0% 0%, rgba(108, 92, 248, 0.12) 0px, transparent 50%),
-      radial-gradient(at 100% 0%, rgba(139, 92, 246, 0.1) 0px, transparent 50%),
-      radial-gradient(at 100% 100%, rgba(20, 184, 166, 0.1) 0px, transparent 50%),
-      radial-gradient(at 0% 100%, rgba(108, 92, 248, 0.08) 0px, transparent 50%);
+      radial-gradient(at 0% 0%, rgba(184, 217, 87, 0.12) 0px, transparent 50%),
+      radial-gradient(at 100% 0%, rgba(240, 107, 78, 0.08) 0px, transparent 50%),
+      radial-gradient(at 100% 100%, rgba(141, 183, 237, 0.10) 0px, transparent 50%),
+      radial-gradient(at 0% 100%, rgba(184, 217, 87, 0.08) 0px, transparent 50%);
   }
 
   .bg-grid {
     background-image:
-      linear-gradient(to right, rgb(108 92 248 / 0.06) 1px, transparent 1px),
-      linear-gradient(to bottom, rgb(108 92 248 / 0.06) 1px, transparent 1px);
+      linear-gradient(to right, rgb(45 55 30 / 0.055) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(45 55 30 / 0.055) 1px, transparent 1px);
     background-size: 64px 64px;
   }
 
@@ -180,14 +180,16 @@
 
   .btn-gradient {
     @apply relative inline-flex items-center justify-center gap-2 rounded-xl px-6 py-3 font-medium text-white transition-all duration-300;
-    background-image: linear-gradient(135deg, #6c5cf8, #5340f2, #8b5cf6);
+    background-image: linear-gradient(135deg, #a7c843, #8ea936, #e9785b);
     background-size: 200% 200%;
-    box-shadow: 0 4px 20px -4px rgba(108, 92, 248, 0.5);
+    box-shadow: 0 4px 20px -4px rgba(25, 29, 23, 0.2);
   }
   btn-gradient:hover {
     background-position: 100% 100%;
+    color: #191d17;
+    background-image: linear-gradient(135deg, #b8d957, #d5e98b);
     transform: translateY(-2px);
-    box-shadow: 0 8px 30px -4px rgba(139, 92, 246, 0.5);
+    box-shadow: 0 8px 30px -4px rgba(184, 217, 87, 0.35);
   }
   .btn-gradient:active {
     transform: translateY(0);
@@ -196,11 +198,11 @@
   .btn-outline {
     @apply inline-flex items-center justify-center gap-2 rounded-xl px-6 py-3 font-medium transition-all duration-300;
     border: 1px solid rgb(148 163 184 / 0.3);
-    color: rgb(226 232 240 / 0.9);
+    color: #191d17;
   }
   .btn-outline:hover {
-    border-color: rgb(138 127 250 / 0.6);
-    background: rgb(108 92 248 / 0.1);
+    border-color: rgb(184 217 87 / 0.7);
+    background: rgb(184 217 87 / 0.18);
     transform: translateY(-2px);
   }
 
@@ -209,7 +211,7 @@
   }
   .card-hover:hover {
     transform: translateY(-6px);
-    box-shadow: 0 24px 48px -12px rgba(83, 64, 242, 0.35);
+    box-shadow: 0 24px 48px -12px rgba(25, 29, 23, 0.12);
   }
 
   .animate-float { animation: var(--animate-float); }
