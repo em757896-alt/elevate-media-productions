@@ -43,7 +43,7 @@ Without Supabase keys, the site runs on seeded data so every feature is browsabl
 
 The official website is hosted on Cloudflare Pages. The Pages project uses `apps/web` as its root directory. Production domain: [https://elevatemediaproductions.cc](https://elevatemediaproductions.cc).
 
-Deployments are managed through the Elevate Media Productions Cloudflare Pages project; do not use the old Vercel deployment.
+Deployments are managed through the Elevate Media Productions Cloudflare Pages project.
 
 ## Project Structure
 
