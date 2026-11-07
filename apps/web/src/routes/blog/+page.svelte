@@ -35,8 +35,9 @@
   <section class="section-padding relative overflow-hidden">
     <div class="pointer-events-none absolute -top-36 right-0 h-[460px] w-[600px] rounded-full bg-primary-500/10 blur-[150px]"></div>
     <div class="container-x relative">
-      <div class="mb-10 flex flex-wrap items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-primary-500">
-        <Newspaper size={15} /> Elevate Media / Newsroom
+      <div class="mb-10 flex flex-wrap items-center justify-between gap-3">
+        <div class="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-primary-500"><Newspaper size={15} /> Elevate Media / Newsroom</div>
+        <a href="/authors" class="inline-flex items-center gap-1 text-xs font-semibold text-ink-light transition hover:text-primary-500 dark:text-slate-400">Meet our authors <ArrowUpRight size={14} /></a>
       </div>
       <div class="grid gap-8 lg:grid-cols-[1.2fr_0.8fr] lg:items-end">
         <div>
