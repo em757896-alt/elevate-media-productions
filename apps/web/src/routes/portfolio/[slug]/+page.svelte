@@ -1,6 +1,6 @@
 <script lang="ts">
   import { page } from '$app/state';
-  import { ExternalLink, Github, MessageCircle, Mail, Phone, Star, Share2, ArrowLeft } from 'lucide-svelte';
+  import { ExternalLink, MessageCircle, Mail, Phone, Share2, ArrowLeft } from 'lucide-svelte';
   import Reveal from '$lib/components/ui/Reveal.svelte';
   import Badge from '$lib/components/ui/Badge.svelte';
   import { getProjectBySlug } from '$lib/data/projects';
@@ -10,7 +10,7 @@
   const project = $derived(getProjectBySlug(slug));
 
   const shareTitle = $derived(project ? `${project.title} — Elevate Media Productions` : '');
-  const shareUrl = $derived((project ? `https://elevate-media-productions.vercel.app/portfolio/${project.slug}` : ''));
+  const shareUrl = $derived((project ? `https://elevatemediaproductions.cc/portfolio/${project.slug}` : ''));
 
   const redditUrl = $derived(shareUrl ? `https://www.reddit.com/submit?url=${encodeURIComponent(shareUrl)}&title=${encodeURIComponent(shareTitle)}` : '');
   const linkedinUrl = $derived(shareUrl ? `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}` : '');
@@ -51,11 +51,6 @@
                     <ExternalLink size={15} /> Live demo
                   </a>
                 {/if}
-                {#if project.github_url}
-                  <a href={project.github_url} target="_blank" rel="noopener noreferrer" class="btn-outline !px-5 !py-2.5 !text-sm !text-ink dark:!text-slate-200">
-                    <Github size={15} /> Source code
-                  </a>
-                {/if}
               </div>
             </div>
           </Reveal>
@@ -64,16 +59,8 @@
             <Reveal>
               <div class="grid gap-5 sm:grid-cols-2">
                 {#each project.screenshots as shot, i}
-                  <figure
-                    class="glass group relative overflow-hidden rounded-2xl transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-primary-500/10"
-                    class:sm:col-span-2={i === 0}
-                  >
-                    <img
-                      src={shot}
-                      alt={`${project.title} screenshot ${i + 1}`}
-                      loading="lazy"
-                      class="aspect-[16/10] w-full object-cover object-top"
-                    />
+                  <figure class="project-visual aspect-[16/10]">
+                    <img src={shot} alt={`${project.title} product screen ${i + 1}`} loading="lazy" />
                   </figure>
                 {/each}
               </div>
@@ -106,20 +93,12 @@
 
           <Reveal>
             <div class="glass mt-8 rounded-2xl p-8 md:p-10">
-              <h2 class="mb-2 font-display text-xl font-bold text-ink dark:text-white">Show some love</h2>
+              <h2 class="mb-2 font-display text-xl font-bold text-ink dark:text-white">Share this project</h2>
               <p class="mb-6 text-sm text-ink-light dark:text-slate-400">
-                Star it on GitHub, share it with your network, or talk to us about bringing something like this to life for you.
+                Share this work with your network, or talk to us about a product with similar goals.
               </p>
 
-              <div class="grid gap-3 sm:grid-cols-3">
-                <a
-                  href={project.github_url ?? '#'}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="flex items-center justify-center gap-2 rounded-xl border border-ink/10 bg-white/50 px-4 py-3 text-sm font-medium text-ink transition-all hover:-translate-y-0.5 hover:bg-white hover:shadow-md dark:border-white/10 dark:bg-white/5 dark:text-slate-200 dark:hover:bg-white/10"
-                >
-                  <Star size={16} /> Star on GitHub
-                </a>
+              <div class="grid gap-3 sm:grid-cols-2">
                 <a
                   href={redditUrl}
                   target="_blank"
@@ -140,7 +119,7 @@
 
               <div class="mt-8 border-t border-ink/5 pt-6 dark:border-white/5">
                 <h3 class="mb-4 font-display text-lg font-bold text-ink dark:text-white">
-                  Want something like this built for you?
+                  Have a similar challenge?
                 </h3>
                 <div class="flex flex-col gap-3 sm:flex-row">
                   <a href={whatsappLink} target="_blank" rel="noopener noreferrer" class="btn-gradient flex-1 !px-5 !py-3 !text-sm">
