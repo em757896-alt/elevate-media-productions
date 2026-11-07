@@ -87,3 +87,8 @@ set category_id = c.id
 from public.editorial_categories c
 where p.category_id is null
   and lower(regexp_replace(p.category, '[^a-zA-Z0-9]+', '-', 'g')) = c.slug;
+
+-- Supabase Data API exposure is separate from RLS; grant only the operations needed.
+GRANT SELECT ON public.editorial_categories TO anon, authenticated;
+GRANT INSERT, UPDATE, DELETE ON public.editorial_categories TO authenticated;
+GRANT SELECT, INSERT, UPDATE, DELETE ON public.editorial_ideas TO authenticated;
