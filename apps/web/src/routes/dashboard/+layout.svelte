@@ -145,7 +145,7 @@
     {/if}
   </div>
 
-  <main class="min-h-screen min-w-0 md:transition-[margin] md:duration-300" class:md:ml-64={sidebarOpen} class:md:ml-[76px]={!sidebarOpen}>
+  <main class="min-h-screen min-w-0 md:transition-[margin] md:duration-300 {sidebarOpen ? 'md:ml-64' : 'md:ml-[76px]'}">
     <header class="hidden h-[76px] items-center justify-between border-b border-slate-200/70 bg-white/80 px-8 backdrop-blur-xl dark:border-white/10 dark:bg-[#101827]/70 md:flex lg:px-10">
       <div>
         <p class="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400">Elevate Media Productions</p>
