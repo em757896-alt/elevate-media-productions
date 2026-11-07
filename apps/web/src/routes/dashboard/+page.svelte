@@ -4,10 +4,16 @@
     Plus, Sparkles, Compass, Settings2, MessageSquareText
   } from 'lucide-svelte';
   import { projects } from '$lib/data/projects';
-  import { getBlogPosts } from '$lib/data/blog';
   import { session } from '$lib/stores/session';
+  import { supabase } from '$lib/supabase';
+  import { onMount } from 'svelte';
 
-  const publishedPosts = getBlogPosts();
+  let publishedCount = $state(0);
+  onMount(async () => {
+    if (!supabase) return;
+    const { count } = await supabase.from('posts').select('id', { count: 'exact', head: true }).eq('published', true);
+    publishedCount = count ?? 0;
+  });
   const featuredProjects = [...projects].sort((a, b) => a.order - b.order).slice(0, 3);
 
   const shortcuts = [
@@ -67,7 +73,7 @@
         <span class="text-xs font-semibold uppercase tracking-[0.12em] text-slate-400">Published articles</span>
         <span class="flex h-10 w-10 items-center justify-center rounded-xl bg-orange-50 text-orange-600 dark:bg-orange-500/10 dark:text-orange-300"><BookOpen size={19} /></span>
       </div>
-      <p class="mt-4 font-display text-3xl font-bold tracking-tight">{publishedPosts.length}</p>
+      <p class="mt-4 font-display text-3xl font-bold tracking-tight">{publishedCount}</p>
       <p class="mt-1 text-xs text-slate-500 dark:text-slate-400">Articles currently marked as published</p>
     </article>
     <article class="rounded-2xl border border-slate-200/80 bg-white p-5 shadow-sm dark:border-white/10 dark:bg-[#101827] sm:col-span-2 xl:col-span-1">
