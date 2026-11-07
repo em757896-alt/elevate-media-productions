@@ -4,8 +4,9 @@
   import Reveal from '$lib/components/ui/Reveal.svelte';
   import Badge from '$lib/components/ui/Badge.svelte';
   import { formatDate } from '$lib/utils';
+  import type { PageData } from './$types';
 
-  let { data } = $props();
+  let { data }: { data: PageData } = $props();
   const post = $derived(data.post);
   const author = $derived(data.author);
   const canonical = $derived(post.canonical_url || 'https://elevatemediaproductions.cc/blog/' + post.slug);
