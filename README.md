@@ -12,7 +12,7 @@
 </p>
 
 <p align="center">
-  <a href="https://elevatemediaproductions.cc"><img src="https://img.shields.io/badge/Live%20Site-elevatemediaproductions.cc-111?style=for-the-badge&logo=vercel" alt="Live demo" /></a>
+  <a href="https://elevatemediaproductions.cc"><img src="https://img.shields.io/badge/Live%20Site-elevatemediaproductions.cc-111?style=for-the-badge&logo=cloudflare" alt="Live demo" /></a>
   <a href="https://github.com/em757896-alt/elevate-media-productions/stargazers"><img src="https://img.shields.io/github/stars/em757896-alt/elevate-media-productions?style=for-the-badge&logo=github&color=ffd166" alt="Stars" /></a>
   <a href="https://github.com/em757896-alt/elevate-media-productions/releases"><img src="https://img.shields.io/github/v/release/em757896-alt/elevate-media-productions?style=for-the-badge&color=06d6a0" alt="Release" /></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue?style=for-the-badge&color=118ab2" alt="License" /></a>
@@ -117,7 +117,7 @@ or start a [discussion](https://github.com/em757896-alt/elevate-media-production
 
 ## Community
 
-- 🌐 Website: [elevate-media-productions.vercel.app](https://elevatemediaproductions.cc)
+- 🌐 Website: [elevatemediaproductions.cc](https://elevatemediaproductions.cc)
 - 👾 Reddit: [u/ElevateMediaProd](https://www.reddit.com/user/ElevateMediaProd/)
 - 📧 Email: **[elevatemediaproductions1@gmail.com](mailto:elevatemediaproductions1@gmail.com)**
 - 💬 WhatsApp: `+254 775 333 673`
