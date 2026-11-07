@@ -1,9 +1,9 @@
 export const site = {
   name: 'Elevate Media Productions',
   shortName: 'Elevate Media',
-  tagline: 'We craft digital experiences that elevate brands.',
+  tagline: 'Digital products, thoughtfully built.',
   description:
-    'Elevate Media Productions is a digital studio building web applications, mobile apps and brand platforms that help organizations launch, grow and engage their communities.',
+    'Elevate Media Productions designs and builds web applications, mobile products and digital experiences for ambitious businesses.',
   email: 'elevatemediaproductions1@gmail.com',
   whatsapp: 'https://wa.me/254775333673',
   phone: 'tel:+254111275630',
@@ -20,19 +20,15 @@ export const nav = {
     { label: 'About', href: '/about' },
     { label: 'Services', href: '/services' },
     { label: 'Work', href: '/portfolio' },
-    { label: 'Skills', href: '/skills' },
-    { label: 'Blog', href: '/blog' },
-    { label: 'Forum', href: '/forum' },
+    { label: 'Capabilities', href: '/skills' },
     { label: 'Contact', href: '/contact' }
   ],
   footer: [
     { label: 'Home', href: '/' },
-    { label: 'About us', href: '/about' },
-    { label: 'About me', href: '/about-me' },
+    { label: 'About', href: '/about' },
     { label: 'Services', href: '/services' },
     { label: 'Portfolio', href: '/portfolio' },
-    { label: 'Blog', href: '/blog' },
-    { label: 'Forum', href: '/forum' },
+    { label: 'Capabilities', href: '/skills' },
     { label: 'Contact', href: '/contact' }
   ]
 } as const;
@@ -47,45 +43,39 @@ export const stats = [
 export const services = [
   {
     title: 'Web Applications',
-    description:
-      'Full-stack platforms from idea to production — portals, dashboards and tools that scale with your users.',
+    description: 'Full-stack platforms from idea to production — portals, dashboards and tools designed around real business needs.',
     icon: 'globe',
-    features: ['Next.js & SvelteKit', 'REST & Serverless APIs', 'Realtime features', 'Role-based portals']
+    features: ['SvelteKit & React', 'REST APIs', 'Responsive interfaces', 'Role-based portals']
   },
   {
     title: 'Mobile Apps',
-    description:
-      'Native Android applications engineered for performance, privacy and delightful interaction.',
+    description: 'Native Android applications engineered for performance, privacy and intuitive everyday use.',
     icon: 'smartphone',
-    features: ['Kotlin & Jetpack Compose', 'Biometric security', 'Offline-first sync', 'SMS intelligence']
-  },
-  {
-    title: 'Brand & Engagement Platforms',
-    description:
-      'Community-centric websites and forums that turn visitors into active, loyal audiences.',
-    icon: 'users',
-    features: ['Discussion forums', 'Content CMS', 'Newsletters', 'Analytics dashboards']
+    features: ['Kotlin & Jetpack Compose', 'Biometric security', 'Offline-first sync', 'Android integrations']
   },
   {
     title: 'Digital Product Design',
-    description:
-      'Design systems, dark-mode-first interfaces and motion design that make products feel inevitable.',
+    description: 'Clear product thinking and cohesive interfaces that make complex tools easier to use.',
     icon: 'pen-tool',
-    features: ['Design tokens', 'Motion systems', 'Accessible contrast', 'Design-to-code']
+    features: ['UI / UX design', 'Design systems', 'Accessible interfaces', 'Prototyping']
   },
   {
-    title: 'Civic & Social Platforms',
-    description:
-      'Purpose-built tools for civic organizations — compliance tracking, awareness and incident reporting.',
-    icon: 'landmark',
-    features: ['Bilingual support', 'Data visualization', 'Incident reporting', 'Legal awareness']
+    title: 'Backend & Integrations',
+    description: 'Reliable application foundations that connect services, data and the workflows people depend on.',
+    icon: 'database',
+    features: ['API development', 'Database design', 'Authentication', 'Third-party integrations']
   },
   {
     title: 'Performance Engineering',
-    description:
-      'We measure, profile and squeeze every millisecond so your site loads fast and ranks higher.',
+    description: 'Faster, more resilient digital experiences through thoughtful architecture and focused optimization.',
     icon: 'zap',
-    features: ['Core Web Vitals', 'Image optimization', 'Edge caching', 'Lighthouse 95+']
+    features: ['Core Web Vitals', 'Image optimization', 'Caching strategy', 'Accessibility audits']
+  },
+  {
+    title: 'Ongoing Product Support',
+    description: 'Practical post-launch improvements that keep products secure, stable and useful as needs evolve.',
+    icon: 'shield-check',
+    features: ['Maintenance', 'Security updates', 'Bug fixes', 'Feature improvements']
   }
 ] as const;
 
@@ -136,69 +126,26 @@ export const skills = [
 ] as const;
 
 export const workflow = [
-  {
-    step: '01',
-    title: 'Discover',
-    description: 'We interview stakeholders, map the problem and define success metrics before a single pixel is drawn.'
-  },
-  {
-    step: '02',
-    title: 'Design',
-    description: 'Prototypes, motion studies and design systems come first — fast and honest, so decisions happen early.'
-  },
-  {
-    step: '03',
-    title: 'Build',
-    description: 'Clean, typed, testable code. We ship the product in slices you can use from week one.'
-  },
-  {
-    step: '04',
-    title: 'Elevate',
-    description: 'Performance audits, accessibility passes and community loops keep raising the bar after launch.'
-  }
+  { step: '01', title: 'Discover', description: 'We understand the problem, users and business goals before choosing a solution.' },
+  { step: '02', title: 'Design', description: 'We shape the experience, validate key decisions and create a clear implementation plan.' },
+  { step: '03', title: 'Build', description: 'We develop in focused increments, keeping quality, security and usability in view.' },
+  { step: '04', title: 'Improve', description: 'We refine the product through testing, performance work and practical post-launch support.' }
 ] as const;
 
 export const faqs = [
-  {
-    question: 'What kind of projects does Elevate Media take on?',
-    answer:
-      'We build full-stack web applications, native Android mobile apps and community/brand platforms. If it needs a clean interface and a reliable backend, it is in our lane.'
-  },
-  {
-    question: 'How long does a typical project take?',
-    answer:
-      'A focused MVP typically lands in 2–6 weeks depending on scope. Larger platforms are broken into milestones so you see progress from the very first sprint.'
-  },
-  {
-    question: 'Do you work with clients outside Kenya?',
-    answer:
-      'Yes. We collaborate fully remote across time zones, with async-first communication and overlapping hours for synchronous design reviews.'
-  },
-  {
-    question: 'Can you maintain a project after launch?',
-    answer:
-      'Absolutely. Many of our engagements include post-launch care: performance monitoring, feature evolution, security patching and community moderation tooling.'
-  },
-  {
-    question: 'How do we get started?',
-    answer:
-      'Reach out through the contact page with a rough idea of your goal. We reply within 48 hours, ask sharp questions and propose a concrete first milestone.'
-  }
+  { question: 'What kind of projects does Elevate Media take on?', answer: 'We design and build web applications, native Android apps and custom digital products for organizations and growing businesses.' },
+  { question: 'How long does a typical project take?', answer: 'Timelines depend on scope. We break larger work into clear milestones and agree on deliverables before development begins.' },
+  { question: 'Do you work with clients outside Kenya?', answer: 'Yes. We collaborate remotely and can work with clients across different time zones.' },
+  { question: 'Can you maintain a project after launch?', answer: 'Yes. Support can include maintenance, security updates, performance improvements and feature development.' },
+  { question: 'How do we get started?', answer: 'Send us a short description of your goals through the contact page. We will review the brief and discuss the next step.' }
 ] as const;
 
 export const team = [
   {
     name: 'Emmanuel Michael',
     role: 'Founder & Lead Developer',
-    bio: 'Builder of web apps, mobile experiences and the platforms that power them.',
+    bio: 'Building web applications, mobile products and useful digital experiences.',
     initials: 'EM',
     gradient: 'linear-gradient(135deg, #6c5cf8, #8b5cf6)'
-  },
-  {
-    name: 'You?',
-    role: 'Join the team',
-    bio: 'Elevate Media grows through collaboration. Contributors, designers and engineers welcome in the forum.',
-    initials: '+',
-    gradient: 'linear-gradient(135deg, #8b5cf6, #14b8a6)'
   }
 ] as const;
