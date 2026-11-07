@@ -6,7 +6,7 @@ export const load: PageServerLoad = async ({ locals }) => {
 
   const { data: rows, error } = await db
     .from('posts')
-    .select('id,title,slug,content,excerpt,cover_image,author_id,category,category_id,tags,reading_time,published,published_at,created_at,updated_at,seo_title,seo_description,canonical_url,source_urls')
+    .select('*')
     .eq('published', true)
     .order('published_at', { ascending: false });
 
@@ -14,7 +14,7 @@ export const load: PageServerLoad = async ({ locals }) => {
 
   const authorIds = [...new Set(rows.map((post) => post.author_id).filter(Boolean))];
   const { data: authors } = authorIds.length
-    ? await db.from('profiles').select('id,username,full_name,avatar_url,bio,author_headline,expertise,is_author').in('id', authorIds)
+    ? await db.from('profiles').select('*').in('id', authorIds)
     : { data: [] };
 
   let categories: { id: string; name: string; slug: string; description: string }[] = [];
