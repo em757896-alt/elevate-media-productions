@@ -18,17 +18,17 @@
       {#each featured as project, i (project.id)}
         <Reveal>
           <a href="/portfolio/{project.slug}" class="group grid gap-6 md:grid-cols-[1.35fr_.65fr] md:items-center md:gap-12">
-            <div class="relative aspect-[16/10] overflow-hidden bg-[#d5d6ca] dark:bg-[#292e24]">
+            <div class="project-visual aspect-[16/10]">
               {#if project.image_url}
-                <img src={project.image_url} alt={project.title} loading="lazy" class="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.035]"/>
+                <img src={project.image_url} alt={project.title} loading="lazy" class="transition-transform duration-700 ease-out group-hover:scale-[1.06]"/>
               {:else}
                 <div class="flex h-full items-center justify-center"><span class="font-display text-[clamp(5rem,15vw,12rem)] font-semibold tracking-[-.09em] text-ink/10 dark:text-white/10">{project.title.slice(0,2).toUpperCase()}</span></div>
               {/if}
-              <span class="absolute left-5 top-5 bg-[#f3f2eb] px-3 py-2 text-[10px] font-bold uppercase tracking-[.16em] text-ink">{String(i+1).padStart(2,'0')} / {project.category}</span>
+              
               <span class="absolute bottom-5 right-5 flex h-12 w-12 items-center justify-center rounded-full bg-primary-400 text-ink transition-transform duration-300 group-hover:rotate-45"><ArrowUpRight size={21}/></span>
             </div>
             <div class="flex flex-col justify-center">
-              <p class="mb-4 text-[11px] font-bold uppercase tracking-[.2em] text-primary-700 dark:text-primary-300">Featured project · {project.category}</p>
+              <p class="mb-4 text-[11px] font-bold uppercase tracking-[.2em] text-primary-700 dark:text-primary-300">{String(i+1).padStart(2,'0')} / {project.category}</p>
               <h3 class="font-display text-3xl font-semibold leading-[1.04] tracking-[-.05em] text-ink transition-colors group-hover:text-primary-700 dark:text-white dark:group-hover:text-primary-300 sm:text-4xl">{project.title}</h3>
               <p class="mt-5 max-w-lg text-base leading-7 text-ink-light dark:text-slate-300">{project.description}</p>
               <div class="mt-7 flex flex-wrap gap-x-4 gap-y-2 border-t border-ink/15 pt-4 dark:border-white/15">{#each project.tech_tags.slice(0,4) as tag}<span class="text-[10px] font-semibold uppercase tracking-[.14em] text-ink-light dark:text-slate-400">{tag}</span>{/each}</div>
