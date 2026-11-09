@@ -2,6 +2,5 @@ User-agent: *
 Allow: /
 Disallow: /dashboard/
 Disallow: /api/
-Disallow: /auth/
 
 Sitemap: https://elevatemediaproductions.cc/sitemap.xml
