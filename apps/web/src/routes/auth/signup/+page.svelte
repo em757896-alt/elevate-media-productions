@@ -5,6 +5,7 @@
 </script>
 
 <svelte:head>
+  <meta name="robots" content="noindex, follow" />
   <title>Create account — Elevate Media Productions</title>
 </svelte:head>
 
