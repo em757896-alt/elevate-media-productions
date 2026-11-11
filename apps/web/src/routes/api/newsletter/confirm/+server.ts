@@ -2,41 +2,31 @@ import { redirect } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
 import { env } from '$env/dynamic/private';
 
-const FALLBACK_SUPABASE_URL = (import.meta.env.VITE_SUPABASE_URL as string | undefined) ?? '';
+export const GET: RequestHandler = async ({ url }) => {
+  const token = (url.searchParams.get('token') ?? '').trim();
+  const action = url.searchParams.get('action') ?? 'confirm';
+  const rpc = action === 'unsubscribe' ? 'unsubscribe_subscription' : action === 'confirm' ? 'confirm_subscription' : null;
+  const supabaseUrl = (env.SUPABASE_URL ?? '').trim();
+  const supabaseKey = (env.SUPABASE_SERVICE_ROLE_KEY ?? '').trim();
 
-export const GET: RequestHandler = async ({ url: reqUrl, request }) => {
-  const action = reqUrl.searchParams.get('action') ?? 'confirm';
-  const token = reqUrl.searchParams.get('token') ?? '';
+  if (!token || token.length > 100 || !rpc || !supabaseUrl || !supabaseKey) throw redirect(303, '/?subscribe=error');
 
-  const supabaseUrl = env.SUPABASE_URL || FALLBACK_SUPABASE_URL;
-  const anonKey = env.SUPABASE_ANON_KEY ?? (import.meta.env.VITE_SUPABASE_ANON_KEY as string | undefined);
-
-  if (!token || !supabaseUrl || !anonKey) {
-    throw redirect(303, '/?subscribe=error');
-  }
-
-  const remoteAddr = request.headers.get('x-forwarded-for') ?? '';
   try {
-    const res = await fetch(`${supabaseUrl}/rest/v1/rpc/${action}_subscription`, {
+    const res = await fetch(supabaseUrl.replace(/\/$/, '') + '/rest/v1/rpc/' + rpc, {
       method: 'POST',
       headers: {
-        apikey: anonKey,
-        Authorization: `Bearer ${anonKey}`,
+        apikey: supabaseKey,
+        Authorization: 'Bearer ' + supabaseKey,
         'Content-Type': 'application/json',
-        'X-Client-Info': 'elevate-media-productions',
-        'X-Forwarded-For': remoteAddr
+        'X-Client-Info': 'elevate-media-productions'
       },
-      body: JSON.stringify({ token })
+      body: JSON.stringify({ p_token: token }),
+      signal: AbortSignal.timeout(8000)
     });
-    if (!res.ok) {
-      throw redirect(303, '/?subscribe=invalid');
-    }
-  } catch {
+    if (!res.ok) throw new Error('Subscription RPC failed: ' + res.status);
+  } catch (cause) {
+    console.error('Newsletter confirmation failed', cause);
     throw redirect(303, '/?subscribe=invalid');
   }
-
-  if (action === 'unsubscribe') {
-    throw redirect(303, '/?subscribe=unsubscribed');
-  }
-  throw redirect(303, '/?subscribe=confirmed');
+  throw redirect(303, action === 'unsubscribe' ? '/?subscribe=unsubscribed' : '/?subscribe=confirmed');
 };
