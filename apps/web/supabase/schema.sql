@@ -310,7 +310,7 @@ as $$
 begin
   update public.subscribers
     set unsubscribed = true, confirm_token = null
-    where email = (select email from public.subscribers where confirm_token = p_token);
+    where confirm_token = p_token;
   if not found then
     raise exception 'invalid or expired token';
   end if;
