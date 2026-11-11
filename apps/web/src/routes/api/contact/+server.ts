@@ -69,7 +69,7 @@ export const POST: RequestHandler = async ({ request }) => {
           <tr><td style="padding:8px 0;color:#64748b;width:100px;vertical-align:top;">Subject</td><td style="padding:8px 0;"><strong>${escapeHtml(subject)}</strong></td></tr>
           <tr><td style="padding:8px 0;color:#64748b;width:100px;vertical-align:top;">Message</td><td style="padding:8px 0;"><pre style="white-space:pre-wrap;font-family:inherit;margin:0;line-height:1.6;">${escapeHtml(message)}</pre></td></tr>
         </table>
-        <p style="color:#94a3b8;font-size:12px;margin-top:24px;">Sent via elevate-media-productions.vercel.app</p>
+        <p style="color:#94a3b8;font-size:12px;margin-top:24px;">Sent via elevatemediaproductions.cc</p>
       </div>`,
     textContent: `New message from the website\n\nFrom: ${name} <${email}>\nSubject: ${subject}\n\n${message}`
   };
