@@ -167,6 +167,36 @@
     </div>
   </section>
 
+  <section class="section-padding relative overflow-hidden">
+    <div class="container-x">
+      <div class="glass grid gap-8 rounded-3xl p-8 md:grid-cols-[.85fr_1.15fr] md:p-12">
+        <div>
+          <p class="mb-3 text-xs font-bold uppercase tracking-[.2em] text-primary-600 dark:text-primary-300">Why work with us</p>
+          <h2 class="font-display text-3xl font-semibold leading-tight tracking-tight text-ink dark:text-white sm:text-4xl">A thoughtful partner from first brief to launch.</h2>
+          <p class="mt-4 max-w-md text-sm leading-7 text-ink-light dark:text-slate-300">We combine product thinking, practical engineering and clear communication to build digital work that solves real problems.</p>
+        </div>
+        <div class="grid gap-5 sm:grid-cols-2">
+          <article class="rounded-2xl border border-ink/10 p-5 dark:border-white/10">
+            <h3 class="font-display text-lg font-semibold text-ink dark:text-white">Built around your goals</h3>
+            <p class="mt-2 text-sm leading-6 text-ink-light dark:text-slate-400">We start with the people, workflow and outcome—not a one-size-fits-all template.</p>
+          </article>
+          <article class="rounded-2xl border border-ink/10 p-5 dark:border-white/10">
+            <h3 class="font-display text-lg font-semibold text-ink dark:text-white">Clear, direct collaboration</h3>
+            <p class="mt-2 text-sm leading-6 text-ink-light dark:text-slate-400">You get understandable decisions, honest progress updates and a defined scope.</p>
+          </article>
+          <article class="rounded-2xl border border-ink/10 p-5 dark:border-white/10">
+            <h3 class="font-display text-lg font-semibold text-ink dark:text-white">Care beyond the interface</h3>
+            <p class="mt-2 text-sm leading-6 text-ink-light dark:text-slate-400">Accessibility, security, performance and maintainability are part of the build—not afterthoughts.</p>
+          </article>
+          <article class="rounded-2xl border border-ink/10 p-5 dark:border-white/10">
+            <h3 class="font-display text-lg font-semibold text-ink dark:text-white">Practical handover</h3>
+            <p class="mt-2 text-sm leading-6 text-ink-light dark:text-slate-400">We aim to leave you with usable documentation and a product your team can understand.</p>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="section-padding relative">
     <div class="container-x mx-auto max-w-3xl">
       <Reveal>
