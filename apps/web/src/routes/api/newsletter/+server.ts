@@ -5,7 +5,7 @@ import { isDisposableEmail } from '$lib/server/disposable-email';
 import { verifyTurnstile } from '$lib/server/turnstile';
 import { consumeRateLimit } from '$lib/server/rate-limit';
 
-const FALLBACK_ORIGIN = 'https://elevate-media-productions.vercel.app';
+const FALLBACK_ORIGIN = 'https://elevatemediaproductions.cc';
 
 export const POST: RequestHandler = async ({ request, getClientAddress }) => {
   const apiKey = env.BREVO_API_KEY;
