@@ -6,8 +6,8 @@ export const GET: RequestHandler = async ({ url }) => {
   const token = (url.searchParams.get('token') ?? '').trim();
   const action = url.searchParams.get('action') ?? 'confirm';
   const rpc = action === 'unsubscribe' ? 'unsubscribe_subscription' : action === 'confirm' ? 'confirm_subscription' : null;
-  const supabaseUrl = (env.SUPABASE_URL ?? '').trim();
-  const supabaseKey = (env.SUPABASE_SERVICE_ROLE_KEY ?? '').trim();
+  const supabaseUrl = (env.SUPABASE_URL ?? (import.meta.env.VITE_SUPABASE_URL as string | undefined) ?? '').trim();
+  const supabaseKey = (env.SUPABASE_ANON_KEY ?? (import.meta.env.VITE_SUPABASE_ANON_KEY as string | undefined) ?? '').trim();
 
   if (!token || token.length > 100 || !rpc || !supabaseUrl || !supabaseKey) throw redirect(303, '/?subscribe=error');
 
