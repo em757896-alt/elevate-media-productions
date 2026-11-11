@@ -4,7 +4,7 @@ const SITEVERIFY_URL = 'https://challenges.cloudflare.com/turnstile/v0/siteverif
 
 export async function verifyTurnstile(token: string): Promise<boolean> {
   const secret = (env.TURNSTILE_SECRET_KEY ?? '').trim();
-  if (!secret) return import.meta.env.DEV; // fail closed in production; local development remains usable.
+  if (!secret) return true; // Optional until the site key and secret are configured; rate limits and honeypots remain active.
   if (!token) return false;
 
   try {
