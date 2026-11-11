@@ -5,6 +5,7 @@
   import Services from '$lib/components/sections/Services.svelte';
   import Workflow from '$lib/components/sections/Workflow.svelte';
   import CTA from '$lib/components/sections/CTA.svelte';
+  import ImpactFinder from '$lib/components/sections/ImpactFinder.svelte';
 
   let toast = $state('');
   let toastTone = $state<'success' | 'error'>('success');
@@ -47,5 +48,6 @@
 <Hero />
 <FeaturedProjects />
 <Services />
+<ImpactFinder />
 <Workflow />
 <CTA />
