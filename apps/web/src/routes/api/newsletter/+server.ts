@@ -23,8 +23,8 @@ export const POST: RequestHandler = async ({ request, getClientAddress }) => {
   if (!(await verifyTurnstile(turnstile))) throw error(400, 'Human verification could not be completed. Please refresh the page and try again.');
 
   const apiKey = (env.BREVO_API_KEY ?? '').trim();
-  const supabaseUrl = (env.SUPABASE_URL ?? '').trim();
-  const supabaseKey = (env.SUPABASE_SERVICE_ROLE_KEY ?? '').trim();
+  const supabaseUrl = (env.SUPABASE_URL ?? (import.meta.env.VITE_SUPABASE_URL as string | undefined) ?? '').trim();
+  const supabaseKey = (env.SUPABASE_ANON_KEY ?? (import.meta.env.VITE_SUPABASE_ANON_KEY as string | undefined) ?? '').trim();
   if (!apiKey || !supabaseUrl || !supabaseKey) {
     console.error('Newsletter service configuration is incomplete.');
     throw error(503, 'The newsletter service is temporarily unavailable. Please try again later.');
