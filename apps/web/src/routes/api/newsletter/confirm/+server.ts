@@ -1,31 +1,28 @@
 import { redirect } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
-import { env } from '$env/dynamic/private';
+import { database } from '$lib/server/neon';
+
+async function tokenHash(token: string) {
+  const bytes = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(token));
+  return Array.from(new Uint8Array(bytes), (b) => b.toString(16).padStart(2, '0')).join('');
+}
 
 export const GET: RequestHandler = async ({ url }) => {
   const token = (url.searchParams.get('token') ?? '').trim();
   const action = url.searchParams.get('action') ?? 'confirm';
-  const rpc = action === 'unsubscribe' ? 'unsubscribe_subscription' : action === 'confirm' ? 'confirm_subscription' : null;
-  const supabaseUrl = (env.SUPABASE_URL ?? (import.meta.env.VITE_SUPABASE_URL as string | undefined) ?? '').trim();
-  const supabaseKey = (env.SUPABASE_ANON_KEY ?? (import.meta.env.VITE_SUPABASE_ANON_KEY as string | undefined) ?? '').trim();
-
-  if (!token || token.length > 100 || !rpc || !supabaseUrl || !supabaseKey) throw redirect(303, '/?subscribe=error');
-
+  if (!token || token.length > 100 || !['confirm', 'unsubscribe'].includes(action)) {
+    throw redirect(303, '/?subscribe=error');
+  }
   try {
-    const res = await fetch(supabaseUrl.replace(/\/$/, '') + '/rest/v1/rpc/' + rpc, {
-      method: 'POST',
-      headers: {
-        apikey: supabaseKey,
-        Authorization: 'Bearer ' + supabaseKey,
-        'Content-Type': 'application/json',
-        'X-Client-Info': 'elevate-media-productions'
-      },
-      body: JSON.stringify({ p_token: token }),
-      signal: AbortSignal.timeout(8000)
-    });
-    if (!res.ok) throw new Error('Subscription RPC failed: ' + res.status);
+    const hashed = await tokenHash(token);
+    const rows = action === 'unsubscribe'
+      ? await database()`UPDATE newsletter_subscribers SET unsubscribed_at=now(), confirmation_token_hash=NULL
+          WHERE confirmation_token_hash=${hashed} RETURNING id`
+      : await database()`UPDATE newsletter_subscribers SET verified_at=COALESCE(verified_at,now()), confirmation_token_hash=NULL
+          WHERE confirmation_token_hash=${hashed} AND unsubscribed_at IS NULL RETURNING id`;
+    if (!rows.length) throw new Error('Invalid or expired subscription token');
   } catch (cause) {
-    console.error('Newsletter confirmation failed', cause);
+    console.error('Newsletter confirmation failed:', cause);
     throw redirect(303, '/?subscribe=invalid');
   }
   throw redirect(303, action === 'unsubscribe' ? '/?subscribe=unsubscribed' : '/?subscribe=confirmed');
